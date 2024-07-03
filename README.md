@@ -1,24 +1,37 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Development setup
 
-Things you may want to cover:
+This guide assumes you have installed [Rails 7.1.3](https://guides.rubyonrails.org/v7.1/getting_started.html) and [PostgreSQL >= 14](https://www.postgresql.org/download/)
 
-* Ruby version
+First, clone the repository to your computer
 
-* System dependencies
+```sh
+git clone git@github.com:runefall/runefall-backend.git
+```
 
-* Configuration
+Next, install all of the Gems
 
-* Database creation
+```sh
+bundle install
+```
 
-* Database initialization
+Create, migrate, and seed the databases
 
-* How to run the test suite
+```sh
+rails db:{create,migrate,seed}
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Finally, start the development server
 
-* Deployment instructions
+```sh
+rails s
+```
 
-* ...
+The API will be served on `localhost:3000`.
+
+Run the test suite to diagnose issues
+
+```sh
+bundle exec rspec
+```
