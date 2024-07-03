@@ -15,7 +15,7 @@ class CreateCards < ActiveRecord::Migration[7.1]
       t.string :spell_speed
       t.string :rarity
       t.string :supertype
-      t.string :type
+      t.string :card_type
       t.boolean :collectible
       t.string :set
 
