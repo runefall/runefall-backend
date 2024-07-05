@@ -23,9 +23,6 @@ jobs:
       - name: Install dependencies
         run: bundle install
 
-  test:
-      runs-on: ubuntu-latest
-
       - name: Run tests
         run: bundle exec rspec
 
