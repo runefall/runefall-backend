@@ -47,7 +47,6 @@ group :development, :test do
   gem "rubocop-discourse" # optional
   gem "shoulda-matchers"
   gem "simplecov"
-  gem "simplecov-json"
   gem "solargraph" # optional - for use with Solargraph VSCode plugin
   gem "standard" # optional - for use with Ruby Standard VSCode plugin
 end
