@@ -11,18 +11,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-  services:
-    postgres:
-      image: postgres:latest
-      ports:
-        - 3000:3000
-      env:
-        POSTGRES_DB: runefall_backend_test
-      options: >-
-        --health-cmd pg_isready
-        --health-interval 10s
-        --health-timeout 5s
-        --health-retries 5
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: runefall_backend_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout code
