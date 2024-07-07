@@ -82,4 +82,34 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards).to be_an(Array)
     end
   end
+
+  describe 'GET /api/v1/cards/search' do
+    it 'returns any card that has an partial name match all of the search queries' do
+      @card1 = create(:card, name: "Draven")
+      @card2 = create(:card, name: "Draven's Whirling Death", description: "whirling axe")
+      @card3 = create(:card, name: "Potato", description: "whirling axe")
+      create_list(:card, 3, name: "Draven")
+      create_list(:card, 3, name: "Draven", description: "axe")
+
+      get "/api/v1/cards/search?query=drav%20description%3aaxe"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(4)
+      expect(response.body).to include(@card2.card_code)
+      expect(response.body).to_not include(@card.card_code)
+    end
+
+    it 'returns an unsupported query error if an invalid filter is used' do
+      get "/api/v1/cards/search?query=drav%20invalid%3aaxe"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+      expect(response.body).to include('Invalid search query')
+    end
+  end
 end
