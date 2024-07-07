@@ -29,8 +29,8 @@ FactoryBot.define do
     assets do
       [
         {
-          "gameAbsolutePath" => Faker::Internet.url,
-          "fullAbsolutePath" => Faker::Internet.url
+          "game_absolute_path" => Faker::Internet.url,
+          "full_absolute_path" => Faker::Internet.url
         }
       ]
     end

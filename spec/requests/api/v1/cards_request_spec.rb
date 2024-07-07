@@ -44,6 +44,8 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(card_attributes[:keyword_refs]).to eq(@card.keyword_refs)
       expect(card_attributes[:formats]).to eq(@card.formats)
       expect(card_attributes[:format_refs]).to eq(@card.format_refs)
+      expect(card_attributes[:assets].first[:game_absolute_path]).to eq(@card.assets.first['game_absolute_path'])
+      expect(card_attributes[:assets].first[:full_absolute_path]).to eq(@card.assets.first['full_absolute_path'])
     end
 
     it 'returns a not found error if the card with the specified card_code does not exist' do
@@ -66,6 +68,11 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(response.body).to include(@cards.second.card_code)
       expect(response.body).to include(@cards.third.card_code)
       expect(response.body).to include(@card.card_code)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards.count).to eq(4)
+      expect(parsed_cards).to be_an(Array)
     end
   end
 end

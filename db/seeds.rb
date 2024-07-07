@@ -38,6 +38,10 @@ sets = [
 
 sets.each do |set|
   set.each do |card|
+    card[:assets] = [{
+      game_absolute_path: card[:assets].first[:gameAbsolutePath],
+      full_absolute_path: card[:assets].first[:fullAbsolutePath]
+    }]
     Card.create!(
       name: card[:name],
       card_code: card[:cardCode],
