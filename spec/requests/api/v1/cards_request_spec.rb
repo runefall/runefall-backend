@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe Api::V1::CardsController, type: :request do
   before :each do
     @card = create(:card)
-    @cards = create_list(:card, 3)
+    @cards = create_list(:card, 3, associated_card_refs: [@card.card_code])
+    @card.update(associated_card_refs: @cards.map do |card|
+      card.card_code
+    end)
   end
 
   describe 'GET /api/v1/cards/:card_code' do
@@ -46,6 +49,10 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(card_attributes[:format_refs]).to eq(@card.format_refs)
       expect(card_attributes[:assets].first[:game_absolute_path]).to eq(@card.assets.first['game_absolute_path'])
       expect(card_attributes[:assets].first[:full_absolute_path]).to eq(@card.assets.first['full_absolute_path'])
+      expect(card_attributes[:associated_cards].count).to eq(3)
+      expect(card_attributes[:associated_cards].first[:card_code]).to eq(@cards.first.card_code)
+      expect(card_attributes[:associated_cards].second[:card_code]).to eq(@cards.second.card_code)
+      expect(card_attributes[:associated_cards].third[:card_code]).to eq(@cards.third.card_code)
     end
 
     it 'returns a not found error if the card with the specified card_code does not exist' do

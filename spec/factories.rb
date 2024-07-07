@@ -34,5 +34,6 @@ FactoryBot.define do
         }
       ]
     end
+    associated_cards { Array.new }
   end
 end
