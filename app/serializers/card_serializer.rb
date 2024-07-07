@@ -25,4 +25,10 @@ class CardSerializer
              :formats,
              :format_refs,
              :assets
+
+  attribute :associated_cards do |object|
+    object.associated_card_refs.map do |card|
+      Card.find_by(card_code: card)
+    end
+  end
 end
