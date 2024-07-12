@@ -130,6 +130,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.4)
+    memory_profiler (1.0.2)
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.24.1)
@@ -144,6 +145,7 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
+    newrelic_rpm (9.11.0)
     nio4r (2.7.3)
     nokogiri (1.16.6-aarch64-linux)
       racc (~> 1.4)
@@ -340,6 +342,8 @@ DEPENDENCIES
   factory_bot_rails
   faker
   jsonapi-serializer
+  memory_profiler
+  newrelic_rpm
   pg (~> 1.1)
   pry
   puma (>= 5.0)

@@ -35,6 +35,7 @@ gem "bootsnap", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 gem "jsonapi-serializer"
+gem "newrelic_rpm"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -49,6 +50,7 @@ group :development, :test do
   gem "simplecov"
   gem "solargraph" # optional - for use with Solargraph VSCode plugin
   gem "standard" # optional - for use with Ruby Standard VSCode plugin
+  gem 'memory_profiler'
 end
 
 group :development do

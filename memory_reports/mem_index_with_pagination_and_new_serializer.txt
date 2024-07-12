@@ -1,0 +1,1147 @@
+Total allocated: 7181733 bytes (38012 objects)
+Total retained:  2632587 bytes (12206 objects)
+
+allocated memory by gem
+-----------------------------------
+   2709644  activerecord-7.1.3.4
+   1935330  bootsnap-1.18.3
+   1074715  activesupport-7.1.3.4
+    477608  other
+    377384  debug-1.9.2
+    188336  delegate
+    146348  activemodel-7.1.3.4
+    102727  rubygems
+     53447  erb
+     28800  kaminari-core-1.2.2
+     28288  jsonapi-serializer-2.2.0
+     19016  kaminari-activerecord-1.2.2
+     15608  runefall-backend/app
+     10656  psych-5.1.2
+      4040  actiontext-7.1.3.4
+      3160  set
+      2400  concurrent-ruby-1.3.3
+      1490  railties-7.1.3.4
+       984  globalid-1.2.1
+       504  mutex_m-0.2.0
+       496  openssl
+       240  monitor
+       120  bundler-2.5.11
+       120  zeitwerk-2.6.16
+        80  activestorage-7.1.3.4
+        80  weakref
+        72  singleton
+        40  securerandom
+
+allocated memory by file
+-----------------------------------
+   1814530  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/compile_cache/iseq.rb
+   1053240  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_pool/reaper.rb
+    604036  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb
+    310848  <internal:kernel>
+    300689  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb
+    266507  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb
+    247016  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb
+    188336  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/delegate.rb
+    181392  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/thread_client.rb
+    175872  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb
+    154416  <internal:trace_point>
+    116269  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/delegation.rb
+    106312  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation.rb
+    101991  <internal:/Users/billy/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/rubygems/core_ext/kernel_require.rb>
+     79320  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/cache.rb
+     67888  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/callbacks.rb
+     61418  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract_adapter.rb
+     60463  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql_adapter.rb
+     38600  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/loaded_features_index.rb
+     35435  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/attribute_methods.rb
+     32574  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_statements.rb
+     31987  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb/compiler.rb
+     28800  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/kaminari-core-1.2.2/lib/kaminari/models/page_scope_methods.rb
+     27576  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/associations.rb
+     25904  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb
+     23759  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_statements.rb
+     23260  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/tasks/database_tasks.rb
+     23101  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/attribute_accessors.rb
+     22616  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/jsonapi-serializer-2.2.0/lib/fast_jsonapi/object_serializer.rb
+     22488  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/associations/collection_proxy.rb
+     22168  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/core.rb
+     21984  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/inflector/methods.rb
+     21460  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb.rb
+     20120  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/source_repository.rb
+     19392  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/base.rb
+     17856  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/type/adapter_specific_registry.rb
+     17184  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb
+     16640  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/redefine_method.rb
+     14250  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/schema_dumper.rb
+     13824  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_definitions.rb
+     13528  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_pool.rb
+     13472  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/persistence.rb
+     13064  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/kaminari-activerecord-1.2.2/lib/kaminari/activerecord/active_record_model_extension.rb
+     12608  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/insert_all.rb
+     11878  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/database_statements.rb
+     11864  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/querying.rb
+     11864  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/type.rb
+     11728  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_handler.rb
+     10982  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/log_subscriber.rb
+     10827  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/quoting.rb
+
+allocated memory by location
+-----------------------------------
+   1624170  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/compile_cache/iseq.rb:64
+   1049104  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_pool/reaper.rb:42
+    342828  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:268
+    310848  <internal:kernel>:49
+    223007  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb:127
+    198216  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+    190360  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/compile_cache/iseq.rb:53
+    154416  <internal:trace_point>:419
+    121584  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:1368
+    115040  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:1748
+    101991  <internal:/Users/billy/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:37
+     90560  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:260
+     84040  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:154
+     84000  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation.rb:42
+     80480  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/thread_client.rb:223
+     56800  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/cache.rb:221
+     54560  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/delegate.rb:347
+     54560  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/delegate.rb:418
+     52560  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/callbacks.rb:950
+     47816  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/delegation.rb:132
+     40240  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/thread_client.rb:901
+     39208  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/delegation.rb:20
+     38623  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql_adapter.rb:0
+     35664  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:193
+     31214  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract_adapter.rb:0
+     30192  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/delegate.rb:395
+     28560  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:259
+     27902  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_statements.rb:0
+     25331  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/attribute_methods.rb:457
+     24800  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/kaminari-core-1.2.2/lib/kaminari/models/page_scope_methods.rb:10
+     22736  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:255
+     22736  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:257
+     22520  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/cache.rb:208
+     22235  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:0
+     22200  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/loaded_features_index.rb:118
+     21600  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:1364
+     21052  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb.rb:429
+     20736  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb:22
+     20160  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:276
+     20120  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:1751
+     20120  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:1755
+     20120  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/thread_client.rb:224
+     20120  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/thread_client.rb:234
+     20120  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/thread_client.rb:239
+     19520  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb:105
+     19207  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_statements.rb:0
+     17232  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:98
+     16640  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/redefine_method.rb:20
+     15700  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/tasks/database_tasks.rb:0
+     15312  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:256
+
+allocated memory by class
+-----------------------------------
+   3616107  String
+   1048984  Thread
+    791536  Array
+    532784  Class
+    295496  RubyVM::InstructionSequence
+    260232  Hash
+    191464  ActiveRecord::Relation
+    144800  Proc
+    124880  Module
+     93306  Regexp
+     27064  MatchData
+     10656  Thread::Mutex
+      9776  Thread::Backtrace
+      6768  Thread::Backtrace::Location
+      4000  CardSerializer
+      3680  Psych::Nodes::Scalar
+      2480  ActiveRecord::Type::Registration
+      1680  ActiveModel::AttributeMethods::ClassMethods::AttributeMethodPattern
+      1680  ActiveSupport::Callbacks::CallbackChain
+      1040  FastJsonapi::Attribute
+      1040  Method
+       840  ActiveModel::Type::Helpers::AcceptsMultiparameterTime
+       800  Psych::Nodes::Mapping
+       784  ActiveRecord::Delegation::GeneratedRelationMethods
+       720  ActiveRecord::AttributeMethods::GeneratedAttributeMethods
+       560  Range
+       520  Concurrent::Map
+       480  ActiveSupport::Callbacks::Callback
+       480  UnboundMethod
+       448  ActiveRecord::ConnectionAdapters::ConnectionPool
+       400  ActiveSupport::Notifications::Fanout::Subscribers::EventObject
+       384  ObjectSpace::WeakMap
+       304  Refinement
+       272  Enumerator
+       256  Monitor
+       248  File
+       248  Psych::Nodes::Alias
+       240  Set
+       176  Binding
+       176  StringScanner
+       160  ActiveModel::Name
+       160  ActiveRecord::DatabaseConfigurations::HashConfig
+       160  ActiveRecord::Type::DecorationRegistration
+       160  ActiveSupport::MessageVerifier
+       160  DEBUGGER__::ThreadClient
+       152  Thread::Queue
+       120  Arel::Nodes::SqlLiteral
+        80  ActiveRecord::ConnectionAdapters::ConnectionPool::ConnectionLeasingQueue
+        80  ActiveRecord::ConnectionAdapters::PoolConfig
+        80  ActiveRecord::DatabaseConfigurations
+
+allocated objects by gem
+-----------------------------------
+     14002  activerecord-7.1.3.4
+      9715  activesupport-7.1.3.4
+      6048  debug-1.9.2
+      1946  bootsnap-1.18.3
+      1541  activemodel-7.1.3.4
+      1490  delegate
+      1102  other
+       528  jsonapi-serializer-2.2.0
+       489  rubygems
+       400  kaminari-core-1.2.2
+       289  kaminari-activerecord-1.2.2
+       211  erb
+        96  psych-5.1.2
+        38  actiontext-7.1.3.4
+        34  concurrent-ruby-1.3.3
+        22  runefall-backend/app
+        18  railties-7.1.3.4
+        12  globalid-1.2.1
+         7  mutex_m-0.2.0
+         6  set
+         4  monitor
+         3  openssl
+         3  zeitwerk-2.6.16
+         2  activestorage-7.1.3.4
+         2  bundler-2.5.11
+         2  weakref
+         1  securerandom
+         1  singleton
+
+allocated objects by file
+-----------------------------------
+      5705  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb
+      3527  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/thread_client.rb
+      2083  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb
+      2068  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb
+      2018  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb
+      1490  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/delegate.rb
+      1265  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb
+       797  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation.rb
+       758  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/delegation.rb
+       750  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/callbacks.rb
+       712  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/compile_cache/iseq.rb
+       700  <internal:kernel>
+       691  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql_adapter.rb
+       680  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/cache.rb
+       535  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/loaded_features_index.rb
+       503  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/source_repository.rb
+       494  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract_adapter.rb
+       478  <internal:/Users/billy/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/rubygems/core_ext/kernel_require.rb>
+       459  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/jsonapi-serializer-2.2.0/lib/fast_jsonapi/object_serializer.rb
+       400  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/kaminari-core-1.2.2/lib/kaminari/models/page_scope_methods.rb
+       388  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/core.rb
+       375  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/attribute_methods.rb
+       296  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_statements.rb
+       287  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/attribute_accessors.rb
+       282  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/tasks/database_tasks.rb
+       281  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_statements.rb
+       270  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/associations.rb
+       264  <internal:trace_point>
+       234  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/kaminari-activerecord-1.2.2/lib/kaminari/activerecord/active_record_model_extension.rb
+       212  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb
+       208  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/redefine_method.rb
+       184  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_pool.rb
+       181  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/inflector/methods.rb
+       154  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb
+       154  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/persistence.rb
+       152  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/type/adapter_specific_registry.rb
+       148  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/database_statements.rb
+       145  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/insert_all.rb
+       139  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/schema_dumper.rb
+       131  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_handler.rb
+       127  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/database_configurations.rb
+       125  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb.rb
+       110  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/calculations.rb
+       106  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/scoping.rb
+       105  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/model_schema.rb
+       104  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_handling.rb
+       104  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/enum.rb
+       103  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/type.rb
+       102  script/memory_profile.rb
+       100  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/base.rb
+
+allocated objects by location
+-----------------------------------
+      2976  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:268
+      1652  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+      1462  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb:127
+      1006  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/thread_client.rb:223
+      1006  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/thread_client.rb:901
+       700  <internal:kernel>:49
+       682  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/delegate.rb:347
+       682  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/delegate.rb:418
+       596  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql_adapter.rb:0
+       504  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:276
+       503  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/callbacks.rb:950
+       503  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:1748
+       503  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:1751
+       503  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:1755
+       503  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/thread_client.rb:224
+       503  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/thread_client.rb:234
+       503  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/thread_client.rb:239
+       500  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation.rb:42
+       500  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/delegation.rb:132
+       478  <internal:/Users/billy/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:37
+       473  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/compile_cache/iseq.rb:53
+       452  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:154
+       448  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/cache.rb:221
+       354  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:252
+       354  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:253
+       354  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:255
+       354  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:256
+       354  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:257
+       354  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:259
+       354  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:260
+       338  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:0
+       330  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract_adapter.rb:0
+       300  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/kaminari-core-1.2.2/lib/kaminari/models/page_scope_methods.rb:10
+       292  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_statements.rb:0
+       278  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_statements.rb:0
+       273  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/attribute_methods.rb:457
+       264  <internal:trace_point>:419
+       260  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/source_repository.rb:40
+       243  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/source_repository.rb:43
+       239  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/compile_cache/iseq.rb:64
+       237  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/tasks/database_tasks.rb:0
+       232  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/cache.rb:208
+       224  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/loaded_features_index.rb:115
+       224  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/loaded_features_index.rb:118
+       208  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/redefine_method.rb:20
+       200  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/core.rb:405
+       180  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb:126
+       177  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:98
+       176  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/associations.rb:0
+       168  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb:22
+
+allocated objects by class
+-----------------------------------
+     17039  String
+     14095  Array
+      1985  Hash
+      1810  Proc
+       666  Class
+       600  ActiveRecord::Relation
+       503  RubyVM::InstructionSequence
+       271  Module
+       161  MatchData
+       159  Regexp
+       148  Thread::Mutex
+       100  CardSerializer
+        94  Thread::Backtrace
+        94  Thread::Backtrace::Location
+        31  ActiveRecord::Type::Registration
+        26  FastJsonapi::Attribute
+        23  Psych::Nodes::Scalar
+        21  ActiveModel::AttributeMethods::ClassMethods::AttributeMethodPattern
+        21  ActiveSupport::Callbacks::CallbackChain
+        14  Range
+        13  Concurrent::Map
+        13  Method
+         6  ActiveSupport::Callbacks::Callback
+         6  Set
+         6  UnboundMethod
+         5  ActiveSupport::Notifications::Fanout::Subscribers::EventObject
+         5  Psych::Nodes::Mapping
+         4  ActiveRecord::DatabaseConfigurations::HashConfig
+         4  Monitor
+         3  ActiveModel::Type::Helpers::AcceptsMultiparameterTime
+         3  ActiveRecord::AttributeMethods::GeneratedAttributeMethods
+         3  ActiveRecord::Delegation::GeneratedRelationMethods
+         3  Arel::Nodes::SqlLiteral
+         3  Psych::Nodes::Alias
+         2  ActiveRecord::DatabaseConfigurations
+         2  ActiveRecord::PredicateBuilder::ArrayHandler
+         2  ActiveRecord::Type::DecorationRegistration
+         2  Binding
+         2  Enumerator
+         2  Integer
+         2  Object
+         2  Thread::Queue
+         1  ActiveModel::Name
+         1  ActiveModel::Type::Registry
+         1  ActiveRecord::ConnectionAdapters::ConnectionHandler
+         1  ActiveRecord::ConnectionAdapters::ConnectionPool
+         1  ActiveRecord::ConnectionAdapters::ConnectionPool::ConnectionLeasingQueue
+         1  ActiveRecord::ConnectionAdapters::ConnectionPool::Reaper
+         1  ActiveRecord::ConnectionAdapters::NullPool::NullConfig
+         1  ActiveRecord::ConnectionAdapters::PoolConfig
+
+retained memory by gem
+-----------------------------------
+   1960549  activerecord-7.1.3.4
+    358050  activesupport-7.1.3.4
+     99472  delegate
+     92643  activemodel-7.1.3.4
+     82104  bootsnap-1.18.3
+     14784  runefall-backend/app
+      7512  kaminari-activerecord-1.2.2
+      4568  jsonapi-serializer-2.2.0
+      3512  actiontext-7.1.3.4
+      3160  set
+      2064  concurrent-ruby-1.3.3
+      1024  other
+       672  globalid-1.2.1
+       636  debug-1.9.2
+       504  mutex_m-0.2.0
+       400  psych-5.1.2
+       240  monitor
+       160  erb
+       160  openssl
+       141  railties-7.1.3.4
+       120  zeitwerk-2.6.16
+        72  singleton
+        40  activestorage-7.1.3.4
+
+retained memory by file
+-----------------------------------
+   1052448  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_pool/reaper.rb
+    213852  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb
+    130032  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb
+     99472  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/delegate.rb
+     74184  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/compile_cache/iseq.rb
+     73643  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb
+     72953  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb
+     47335  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql_adapter.rb
+     40768  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/callbacks.rb
+     37517  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract_adapter.rb
+     29566  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_statements.rb
+     20900  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/tasks/database_tasks.rb
+     20887  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_statements.rb
+     19365  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/delegation.rb
+     18952  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/associations.rb
+     17555  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/attribute_methods.rb
+     14896  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb
+     14856  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation.rb
+     14464  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/base.rb
+     12810  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/schema_dumper.rb
+     11960  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/persistence.rb
+     10376  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/core.rb
+     10160  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/type/adapter_specific_registry.rb
+     10128  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/associations/collection_proxy.rb
+      9912  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_definitions.rb
+      9774  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/database_statements.rb
+      9312  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_pool.rb
+      9136  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/insert_all.rb
+      8926  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/log_subscriber.rb
+      8256  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_handler.rb
+      8211  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/quoting.rb
+      8184  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/querying.rb
+      7904  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/type.rb
+      7792  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/calculations.rb
+      7672  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_pool/queue.rb
+      7440  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/loaded_features_index.rb
+      7381  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/model_schema.rb
+      7326  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/quoting.rb
+      7200  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/autosave_association.rb
+      7112  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb
+      6432  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_handling.rb
+      6408  /Users/billy/Turing/4mod/runefall/runefall-backend/app/models/card.rb
+      6296  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/concern.rb
+      6261  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/enum.rb
+      6258  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/sanitization.rb
+      5968  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/predicate_builder.rb
+      5728  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/store.rb
+      5721  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/oid/hstore.rb
+      5680  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/redefine_method.rb
+      5616  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/transactions.rb
+
+retained memory by location
+-----------------------------------
+   1049104  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_pool/reaper.rb:42
+    213852  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:268
+    101840  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+     74184  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/compile_cache/iseq.rb:53
+     72953  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb:127
+     54560  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/delegate.rb:418
+     50920  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:154
+     30720  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/callbacks.rb:950
+     30359  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql_adapter.rb:0
+     30192  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/delegate.rb:395
+     25102  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract_adapter.rb:0
+     25086  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_statements.rb:0
+     16487  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_statements.rb:0
+     15540  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/tasks/database_tasks.rb:0
+     15483  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:0
+     14024  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/base.rb:282
+     12923  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/attribute_methods.rb:457
+     11040  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb:22
+      9768  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/associations/collection_proxy.rb:1149
+      9632  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract_adapter.rb:1239
+      9146  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/schema_dumper.rb:0
+      8272  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/delegation.rb:33
+      8040  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/associations.rb:0
+      8016  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation.rb:0
+      8000  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/persistence.rb:0
+      7440  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/loaded_features_index.rb:123
+      7318  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/database_statements.rb:0
+      7160  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/delegate.rb:400
+      7120  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_pool.rb:0
+      6816  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql_adapter.rb:64
+      6760  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:98
+      6694  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/log_subscriber.rb:0
+      6328  /Users/billy/Turing/4mod/runefall/runefall-backend/app/models/card.rb:1
+      6251  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/quoting.rb:0
+      5992  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/calculations.rb:0
+      5934  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/quoting.rb:0
+      5920  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/insert_all.rb:0
+      5720  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/core.rb:0
+      5680  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/redefine_method.rb:20
+      5360  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb:19
+      5328  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation.rb:1050
+      5280  /Users/billy/Turing/4mod/runefall/runefall-backend/app/models/application_record.rb:1
+      5208  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/type.rb:39
+      5145  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/oid/hstore.rb:0
+      4877  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/model_schema.rb:0
+      4858  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/sanitization.rb:0
+      4840  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_handling.rb:0
+      4800  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_handler.rb:0
+      4656  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:2049
+      4600  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/autosave_association.rb:0
+
+retained memory by class
+-----------------------------------
+   1048984  Thread
+    855363  String
+    261216  Class
+    127168  Array
+    103496  Module
+     84500  Regexp
+     74560  Proc
+     32920  Hash
+     24904  RubyVM::InstructionSequence
+      3456  Thread::Mutex
+      2480  ActiveRecord::Type::Registration
+      1680  ActiveModel::AttributeMethods::ClassMethods::AttributeMethodPattern
+      1600  ActiveSupport::Callbacks::CallbackChain
+      1040  FastJsonapi::Attribute
+       840  ActiveModel::Type::Helpers::AcceptsMultiparameterTime
+       784  ActiveRecord::Delegation::GeneratedRelationMethods
+       720  ActiveRecord::AttributeMethods::GeneratedAttributeMethods
+       560  Range
+       520  Concurrent::Map
+       480  ActiveSupport::Callbacks::Callback
+       448  ActiveRecord::ConnectionAdapters::ConnectionPool
+       400  ActiveSupport::Notifications::Fanout::Subscribers::EventObject
+       384  ObjectSpace::WeakMap
+       320  ActiveRecord::Relation
+       304  Refinement
+       256  Monitor
+       240  Set
+       160  ActiveModel::Name
+       160  ActiveRecord::DatabaseConfigurations::HashConfig
+       160  ActiveRecord::Type::DecorationRegistration
+       160  ActiveSupport::MessageVerifier
+       160  DEBUGGER__::ThreadClient
+       160  UnboundMethod
+       120  Arel::Nodes::SqlLiteral
+        80  ActiveRecord::ConnectionAdapters::ConnectionPool::ConnectionLeasingQueue
+        80  ActiveRecord::ConnectionAdapters::PoolConfig
+        80  ActiveRecord::PredicateBuilder::ArrayHandler
+        80  ActiveSupport::Notifications::Fanout::Subscribers::Evented
+        80  Arel::Table
+        80  Integer
+        80  Method
+        80  Object
+        76  Thread::Queue
+        64  ActiveSupport::Concurrency::LoadInterlockAwareMonitor
+        64  Thread::ConditionVariable
+        40  ActiveModel::Type::Registry
+        40  ActiveRecord::ConnectionAdapters::ConnectionHandler
+        40  ActiveRecord::ConnectionAdapters::ConnectionPool::Reaper
+        40  ActiveRecord::ConnectionAdapters::NullPool::NullConfig
+        40  ActiveRecord::ConnectionAdapters::PoolManager
+
+retained objects by gem
+-----------------------------------
+      7284  activerecord-7.1.3.4
+      2864  activesupport-7.1.3.4
+       752  delegate
+       689  activemodel-7.1.3.4
+       368  bootsnap-1.18.3
+        65  jsonapi-serializer-2.2.0
+        53  kaminari-activerecord-1.2.2
+        32  concurrent-ruby-1.3.3
+        30  actiontext-7.1.3.4
+        11  runefall-backend/app
+        10  debug-1.9.2
+        10  other
+         7  globalid-1.2.1
+         7  mutex_m-0.2.0
+         6  psych-5.1.2
+         6  set
+         4  monitor
+         3  zeitwerk-2.6.16
+         1  activestorage-7.1.3.4
+         1  erb
+         1  openssl
+         1  railties-7.1.3.4
+         1  singleton
+
+retained objects by file
+-----------------------------------
+      1414  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb
+      1052  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb
+       752  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/delegate.rb
+       659  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb
+       533  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb
+       455  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql_adapter.rb
+       441  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/callbacks.rb
+       277  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/compile_cache/iseq.rb
+       253  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/tasks/database_tasks.rb
+       227  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_statements.rb
+       224  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_statements.rb
+       209  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract_adapter.rb
+       158  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/associations.rb
+       141  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation.rb
+       124  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_pool.rb
+       119  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/persistence.rb
+       111  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb
+       110  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/schema_dumper.rb
+       109  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/core.rb
+       107  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/attribute_methods.rb
+       105  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/database_statements.rb
+       103  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/insert_all.rb
+        95  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/type/adapter_specific_registry.rb
+        92  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/concern.rb
+        87  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/loaded_features_index.rb
+        84  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/delegation.rb
+        80  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/attribute_accessors.rb
+        78  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/model_schema.rb
+        76  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/querying.rb
+        74  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_creation.rb
+        72  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/calculations.rb
+        71  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb
+        71  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/redefine_method.rb
+        70  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/autosave_association.rb
+        70  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_handler.rb
+        66  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/database_configurations.rb
+        64  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_handling.rb
+        63  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/enum.rb
+        61  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_definitions.rb
+        61  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/transactions.rb
+        60  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/nested_attributes.rb
+        57  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/encryption/encryptable_record.rb
+        55  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/type.rb
+        51  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_creation.rb
+        51  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/store.rb
+        50  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/naming.rb
+        49  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/log_subscriber.rb
+        49  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/predicate_builder.rb
+        45  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/inheritance.rb
+        44  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/finder_methods.rb
+
+retained objects by location
+-----------------------------------
+      1414  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:268
+       825  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+       682  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/delegate.rb:418
+       659  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb:127
+       398  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql_adapter.rb:0
+       326  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:154
+       321  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/callbacks.rb:950
+       277  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/compile_cache/iseq.rb:53
+       233  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/tasks/database_tasks.rb:0
+       225  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_statements.rb:0
+       222  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_statements.rb:0
+       193  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:0
+       184  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract_adapter.rb:0
+       122  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation.rb:0
+       114  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/persistence.rb:0
+       104  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/schema_dumper.rb:0
+       102  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/database_statements.rb:0
+       101  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/associations.rb:0
+        99  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_pool.rb:0
+        97  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:98
+        87  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/loaded_features_index.rb:123
+        86  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/insert_all.rb:0
+        84  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb:22
+        82  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/core.rb:0
+        73  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/querying.rb:0
+        72  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_creation.rb:0
+        71  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/redefine_method.rb:20
+        68  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/calculations.rb:0
+        67  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb:19
+        64  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/model_schema.rb:0
+        62  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/autosave_association.rb:0
+        61  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:0
+        60  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_handler.rb:0
+        59  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_handling.rb:0
+        53  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/database_configurations.rb:0
+        52  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/encryption/encryptable_record.rb:0
+        51  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/enum.rb:0
+        51  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/concern.rb:126
+        50  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/nested_attributes.rb:0
+        49  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_creation.rb:0
+        48  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/transactions.rb:0
+        44  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/log_subscriber.rb:0
+        43  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/batches.rb:0
+        42  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/attribute_methods.rb:457
+        42  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/finder_methods.rb:0
+        40  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_definitions.rb:0
+        40  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/attribute_accessors.rb:138
+        38  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/oid/type_map_initializer.rb:0
+        38  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/sanitization.rb:0
+        36  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/associations/builder/association.rb:0
+
+retained objects by class
+-----------------------------------
+      7887  String
+      2202  Array
+       932  Proc
+       367  Class
+       198  Hash
+       172  Module
+       143  Regexp
+        48  Thread::Mutex
+        43  RubyVM::InstructionSequence
+        31  ActiveRecord::Type::Registration
+        26  FastJsonapi::Attribute
+        21  ActiveModel::AttributeMethods::ClassMethods::AttributeMethodPattern
+        20  ActiveSupport::Callbacks::CallbackChain
+        14  Range
+        13  Concurrent::Map
+         6  ActiveSupport::Callbacks::Callback
+         6  Set
+         5  ActiveSupport::Notifications::Fanout::Subscribers::EventObject
+         4  ActiveRecord::DatabaseConfigurations::HashConfig
+         4  Monitor
+         3  ActiveModel::Type::Helpers::AcceptsMultiparameterTime
+         3  ActiveRecord::AttributeMethods::GeneratedAttributeMethods
+         3  ActiveRecord::Delegation::GeneratedRelationMethods
+         3  Arel::Nodes::SqlLiteral
+         2  ActiveRecord::PredicateBuilder::ArrayHandler
+         2  ActiveRecord::Type::DecorationRegistration
+         2  Integer
+         2  Object
+         2  UnboundMethod
+         1  ActiveModel::Name
+         1  ActiveModel::Type::Registry
+         1  ActiveRecord::ConnectionAdapters::ConnectionHandler
+         1  ActiveRecord::ConnectionAdapters::ConnectionPool
+         1  ActiveRecord::ConnectionAdapters::ConnectionPool::ConnectionLeasingQueue
+         1  ActiveRecord::ConnectionAdapters::ConnectionPool::Reaper
+         1  ActiveRecord::ConnectionAdapters::NullPool::NullConfig
+         1  ActiveRecord::ConnectionAdapters::PoolConfig
+         1  ActiveRecord::ConnectionAdapters::PoolManager
+         1  ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Money
+         1  ActiveRecord::DatabaseConfigurations
+         1  ActiveRecord::ExplainSubscriber
+         1  ActiveRecord::LogSubscriber
+         1  ActiveRecord::PredicateBuilder
+         1  ActiveRecord::PredicateBuilder::BasicObjectHandler
+         1  ActiveRecord::PredicateBuilder::RangeHandler
+         1  ActiveRecord::PredicateBuilder::RelationHandler
+         1  ActiveRecord::Relation
+         1  ActiveRecord::Scoping::ScopeRegistry
+         1  ActiveRecord::TableMetadata
+         1  ActiveRecord::Type::AdapterSpecificRegistry
+
+
+Allocated String Report
+-----------------------------------
+       581  "\n"
+       184  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+       168  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/callbacks.rb:950
+        85  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb.rb:429
+        45  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:98
+        30  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb:19
+        27  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:154
+        24  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb:22
+         9  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb/compiler.rb:305
+         4  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/kaminari-activerecord-1.2.2/lib/kaminari/activerecord/active_record_model_extension.rb:14
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb/compiler.rb:239
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb/compiler.rb:240
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb/compiler.rb:351
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb/compiler.rb:366
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/delegation.rb:77
+
+       224  ".rb"
+       224  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/loaded_features_index.rb:115
+
+       200  "25"
+       200  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/kaminari-core-1.2.2/lib/kaminari/models/page_scope_methods.rb:10
+
+       161  "              end\n"
+        92  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+        56  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/callbacks.rb:950
+        12  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb:22
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/delegation.rb:77
+
+       146  "  _ = scope"
+       146  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:256
+
+       104  "  _ = all"
+       104  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:256
+
+       102  "Load /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb"
+       102  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:1748
+
+        68  ""
+        36  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/attribute_methods.rb:457
+        14  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb/compiler.rb:325
+        14  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract_adapter.rb:91
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb.rb:429
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb/compiler.rb:241
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb/compiler.rb:353
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/psych-5.1.2/lib/psych/parser.rb:62
+
+        54  "        end                                    # end\n"
+        54  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:154
+
+        28  "Load /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb"
+        28  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:1748
+
+        27  "          assert_mutability!                   #   assert_mutability!\n"
+        27  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:154
+
+        26  "  _ = records"
+        26  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:256
+
+        21  ")(.*)(?:"
+        21  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/attribute_methods.rb:457
+
+        21  ")\\z"
+        21  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/attribute_methods.rb:457
+
+        21  "\\A(?:"
+        21  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/attribute_methods.rb:457
+
+        19  "          end\n"
+        18  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:98
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/kaminari-activerecord-1.2.2/lib/kaminari/activerecord/active_record_model_extension.rb:14
+
+        16  "Load /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/callbacks.rb"
+        16  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:1748
+
+        16  "card"
+         6  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/inflector/methods.rb:101
+         4  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/inflector/methods.rb:146
+         3  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/inflector/methods.rb:382
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/naming.rb:217
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/inflector/methods.rb:152
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/inflector/methods.rb:377
+
+        15  "  _ = @conn"
+        15  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:256
+
+        14  "Load /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/core.rb"
+        14  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:1748
+
+        13  "@name"
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/naming.rb:12
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/connection_handler.rb:62
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:10
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:245
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:366
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:709
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/column.rb:10
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/database_configurations/database_config.rb:9
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/dynamic_matchers.rb:50
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/enum.rb:213
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/from_clause.rb:6
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:133
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/type/adapter_specific_registry.rb:73
+
+        13  "Load /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb"
+        13  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:1748
+
+        12  "                ActiveRecord::Base.clear_query_caches_for_current_thread\n"
+        12  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb:22
+
+        12  "                super\n"
+        12  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb:22
+
+        11  "Load /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/model_schema.rb"
+        11  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:1748
+
+        11  "Load /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/schema_dumper.rb"
+        11  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:1748
+
+        10  "  _ = name"
+        10  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:256
+
+        10  "  _ = transaction_manager"
+        10  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:256
+
+         9  "/Users/billy/Turing/4mod/runefall/runefall-backend/config/database.yml"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/configuration_file.rb:39
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.1.3.4/lib/rails/application/configuration.rb:438
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/3.2.0/erb.rb:429
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/configuration_file.rb:13
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.1.3.4/lib/rails/application/configuration.rb:440
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.1.3.4/lib/rails/paths.rb:206
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/railties-7.1.3.4/lib/rails/paths.rb:222
+
+         9  "def model_name(&block);  _ = self.class;  _.model_name(&block);rescue NoMethodError => e;  if _.nil? && e.name == :model_name;   raise DelegationError, \"ActiveRecord::Base#model_name delegated to self"
+         9  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:268
+
+         8  "_define_after_model_callback"
+         7  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/callbacks.rb:123
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/callbacks.rb:0
+
+         8  "with"
+         4  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract_adapter.rb:91
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:252
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:253
+
+         7  "  _ = sql_type_metadata"
+         5  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:245
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:256
+
+         7  "  _ = subtype"
+         7  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:256
+
+         7  "ActiveRecord::ExplainRegistry"
+         5  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:261
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/explain_registry.rb:37
+
+         7  "Bulk insert or upsert is currently not supported for has_many through association"
+         7  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb:19
+
+         7  "Load /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb"
+         7  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/debug-1.9.2/lib/debug/session.rb:1748
+
+         7  "\\?"
+         6  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/attribute_methods.rb:457
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/sanitization.rb:0
+
+         7  "limit"
+         3  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:252
+         3  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:253
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:242
+
+         6  "    raise ArgumentError, \"Bulk insert or upsert is currently not supported for has_many through association\"\n"
+         6  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb:19
+
+         6  "  _ = self.class"
+         6  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:256
+
+         6  "  end\n"
+         6  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb:19
+
+         6  "/Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/validations/clusivity.rb"
+         2  <internal:/Users/billy/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:37
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/compile_cache/iseq.rb:53
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/cache.rb:221
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:11
+         1  <internal:dir>:129
+
+         6  "/Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/validations/resolve_value.rb"
+         2  <internal:/Users/billy/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:37
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/compile_cache/iseq.rb:53
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/cache.rb:221
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/bootsnap-1.18.3/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:11
+         1  <internal:dir>:129
+
+         6  "any?"
+         3  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:252
+         3  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:253
+
+         6  "cards"
+         3  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/inflector/methods.rb:377
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/naming.rb:182
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/model_schema.rb:655
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/inflector/methods.rb:382
+
+         6  "class << self;silence_redefinition_of_method def __callbacks;end;;silence_redefinition_of_method def __callbacks=(value);  redefine_method(:__callbacks) { value } if singleton_class?;  redefine_single"
+         6  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb:127
+
+         6  "collect="
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/explain_registry.rb:21
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/explain_registry.rb:0
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:252
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:253
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:268
+
+         6  "end\n"
+         6  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb:19
+
+         6  "table_name="
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/schema_dumper.rb:69
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:174
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_definitions.rb:192
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/postgresql/schema_definitions.rb:214
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/model_schema.rb:0
+
+
+Retained String Report
+-----------------------------------
+       161  "              end\n"
+        92  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+        56  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/callbacks.rb:950
+        12  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb:22
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/delegation.rb:77
+
+        88  "\n"
+        42  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/callbacks.rb:950
+        27  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:154
+        10  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:98
+         7  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb:19
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/kaminari-activerecord-1.2.2/lib/kaminari/activerecord/active_record_model_extension.rb:14
+
+        54  "        end                                    # end\n"
+        54  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:154
+
+        27  "          assert_mutability!                   #   assert_mutability!\n"
+        27  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:154
+
+        19  "          end\n"
+        18  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:98
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/kaminari-activerecord-1.2.2/lib/kaminari/activerecord/active_record_model_extension.rb:14
+
+        12  "                ActiveRecord::Base.clear_query_caches_for_current_thread\n"
+        12  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb:22
+
+        12  "                super\n"
+        12  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb:22
+
+         6  "    raise ArgumentError, \"Bulk insert or upsert is currently not supported for has_many through association\"\n"
+         6  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb:19
+
+         6  "  end\n"
+         6  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb:19
+
+         6  "  if @association.reflection.through_reflection?\n"
+         6  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb:19
+
+         6  "end\n"
+         6  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/association_relation.rb:19
+
+         4  "cards"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/inflector/methods.rb:377
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/naming.rb:182
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/model_schema.rb:655
+
+         4  "class << self;silence_redefinition_of_method def __callbacks;end;;silence_redefinition_of_method def __callbacks=(value);  redefine_method(:__callbacks) { value } if singleton_class?;  redefine_single"
+         4  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb:127
+
+         3  "card"
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activemodel-7.1.3.4/lib/active_model/naming.rb:217
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/inflector/methods.rb:101
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/inflector/methods.rb:377
+
+         2  "                names.each { |name| column(name, :boolean, **options) }\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "                names.each { |name| column(name, :date, **options) }\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "                raise ArgumentError, \"Missing column name(s) for date\" if names.empty?\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def bigserial(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def bit(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def bit_varying(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def box(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def cidr(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def circle(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def citext(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def daterange(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def hstore(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def inet(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def int4range(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def int8range(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def interval(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def jsonb(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def line(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def lseg(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def ltree(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def macaddr(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def money(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def numrange(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def oid(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def path(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def point(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def polygon(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "              def serial(*names, **options)\n"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/connection_adapters/abstract/schema_definitions.rb:331
+
+         2  "ActiveRecord::Associations::CollectionProxy#load_async delegated to scope.load_async, but scope is nil: "
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:268
+
+         2  "class << self;silence_redefinition_of_method def _attr_readonly;end;;silence_redefinition_of_method def _attr_readonly=(value);  redefine_method(:_attr_readonly) { value } if singleton_class?;  redefi"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb:127
+
+         2  "class << self;silence_redefinition_of_method def backtrace_cleaner;end;;silence_redefinition_of_method def backtrace_cleaner=(value);  redefine_method(:backtrace_cleaner) { value } if singleton_class?"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb:127
+
+         2  "class << self;silence_redefinition_of_method def record_timestamps;end;;silence_redefinition_of_method def record_timestamps=(value);  redefine_method(:record_timestamps) { value } if singleton_class?"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/class/attribute.rb:127
+
+         2  "def quoted_include_columns_for_index(...);  _ = @conn;  _.quoted_include_columns_for_index(...);rescue NoMethodError => e;  if _.nil? && e.name == :quoted_include_columns_for_index;   raise Delegation"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:268
+
+         2  "def skip_duplicates?(...);  _ = insert_all;  _.skip_duplicates?(...);rescue NoMethodError => e;  if _.nil? && e.name == :skip_duplicates?;   raise DelegationError, \"ActiveRecord::InsertAll::Builder#sk"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activesupport-7.1.3.4/lib/active_support/core_ext/module/delegation.rb:268
+
+         2  "find_by!"
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/dynamic_matchers.rb:0
+         1  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/querying.rb:0
+
+         2  "subquery"
+         2  /Users/billy/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/activerecord-7.1.3.4/lib/active_record/relation/query_methods.rb:0
+
