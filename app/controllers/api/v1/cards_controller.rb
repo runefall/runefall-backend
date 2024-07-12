@@ -11,13 +11,13 @@ class Api::V1::CardsController < ApplicationController
 
   def index
     cards = Card.all
-    render json: CardSerializer.new(cards)
+    render json: MultiCardSerializer.new(cards)
   end
 
   def search
     if valid_search_params?
       cards = Card.search(format_search_params)
-      render json: CardSerializer.new(cards)
+      render json: MultiCardSerializer.new(cards)
     else
       render json: { error: "Invalid search query" }, status: :bad_request
     end
