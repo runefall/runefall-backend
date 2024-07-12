@@ -31,7 +31,7 @@ class Api::V1::CardsController < ApplicationController
       if string.include?(":")
         filter_array = string.split(":")
         hash[filter_array[0].to_sym] = filter_array[1]
-      else 
+      else
         hash[:name] = string
       end
     end
