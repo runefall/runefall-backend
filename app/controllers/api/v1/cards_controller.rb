@@ -37,9 +37,10 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def valid_search_params?
-    keys = format_search_params.flat_map(&:keys)
-    keys.all? { |key|
-    permitted_search_criteria.include?(key) }
+    format_search_params.all? do |param|
+      key, _ = param.first
+      permitted_search_criteria.include?(key)
+    end
   end
 
   def permitted_search_criteria
