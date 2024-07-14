@@ -11,9 +11,9 @@ RSpec.describe Card, type: :model do
     end
 
     it 'returns all cards with fuzzy name matches when a basic search is used' do
-      search_hash = {name: "drav"}
+      search_array = [{ name: "drav" }]
 
-      cards = Card.search(search_hash)
+      cards = Card.search(search_array)
 
       expect(cards).to be_an(ActiveRecord::Relation)
       expect(cards.count).to eq(8)
@@ -22,9 +22,9 @@ RSpec.describe Card, type: :model do
     end
 
     it "returns all cards with fuzzy description matches when the 'description:text' syntax is used" do
-      search_hash = {description: "axe"}
+      search_array = [{ description: "axe" }]
 
-      cards = Card.search(search_hash)
+      cards = Card.search(search_array)
 
       expect(cards).to be_an(ActiveRecord::Relation)
       expect(cards.count).to eq(5)
@@ -33,14 +33,26 @@ RSpec.describe Card, type: :model do
     end
 
     it "returns all cards that satisfy ALL search parameters when multiple search syntaxes are used" do
-      search_hash = {name: "drav", description: "axe"}
+      search_array = [{ name: "drav" }, { description: "axe" }]
 
-      cards = Card.search(search_hash)
+      cards = Card.search(search_array)
 
       expect(cards).to be_an(ActiveRecord::Relation)
       expect(cards.count).to eq(4)
       expect(cards).to include(@card2)
       expect(cards).to_not include(@card1)
+    end
+
+    it "returns all cards that satisfy ALL search parameters when multiple of the same search stynax is used and not just the last of that syntax" do
+      temp_card = create(:card, name: "Darius's Whirling Death", description: "whirling axe")
+      search_array = [{ name: "dar" }, { name: "whirl" }]
+
+      cards = Card.search(search_array)
+
+      expect(cards).to be_an(ActiveRecord::Relation)
+      expect(cards.count).to eq(1)
+      expect(cards).to include(temp_card)
+      expect(cards).to_not include(@card2)
     end
   end
 end
