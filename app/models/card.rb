@@ -1,6 +1,15 @@
 class Card < ApplicationRecord
   def self.search(filters)
-    Card.where('name ILIKE ? AND description ILIKE ?', "%#{filters[:name]}%", "%#{filters[:description]}%")
+    cards = Card.all
+
+    filters.each do |filter|
+      key, value = filter.first
+      cards = cards.where("#{key} ILIKE ?", "%#{value}%")
+    end
+
+    cards
+
+    # Card.where('name ILIKE ? AND description ILIKE ?', "%#{filters[:name]}%", "%#{filters[:description]}%")
     # cards = Array.new
 
     # Card.where('name ILIKE ?', "%#{filters[:name]}%").where('description ILIKE ?', "%#{filters[:description]}%")
@@ -18,6 +27,7 @@ class Card < ApplicationRecord
     # final_cards = []
     # filters.each do |filter|
     #   key, value = filter.first
+    #   require 'pry'; binding.pry
     #   final_cards = case key
     #   when :description
     #     cards = cards.where('description ILIKE ?', "%#{value}%")
