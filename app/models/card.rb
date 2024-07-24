@@ -4,13 +4,22 @@ class Card < ApplicationRecord
 
     # This uses the ILIKE operator to search by
     # name, description, etc. in a case-insensitive manner
-    %i[name description type rarity artist language set
+    %i[name description rarity artist language set
        flavor_text].each do |filter|
       next unless filters[filter]
 
       cards = cards.where(
         "#{filter} ILIKE ?",
         "%#{filters[filter]}%"
+      )
+    end
+
+    # Since "type" is a protected keyword, this searches the
+    # "card_type" column instead.
+    if filters[:type]
+      cards = cards.where(
+        "card_type ILIKE ?",
+        "%#{filters[:type]}%"
       )
     end
 
