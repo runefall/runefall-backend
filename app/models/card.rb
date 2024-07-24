@@ -39,8 +39,9 @@ class Card < ApplicationRecord
       values.each_with_index do |value, i|
         values[i] = value.strip.split(" ").map(&:capitalize).join(" ")
 
-        # changes ["Demacia", "Ionia"] to '"Demacia", "Ionia"'
-        # This is used in the SQL query
+        # It then changes ["Demacia", "Ionia"] to '"Demacia", "Ionia"'
+        # which is then used in the SQL query to make a query like this:
+        # WHERE regions && '{"Demacia", "Ionia"}'
         array_text += if i.zero?
                         "\"#{value}\""
                       else
@@ -49,7 +50,7 @@ class Card < ApplicationRecord
       end
 
       # This searches the string array columns for any of the values
-      # contained within the query string.
+      # contained within the query string. See previous comment.
       cards = cards.where(
         "#{key} && ?",
         "{#{array_text}}"
