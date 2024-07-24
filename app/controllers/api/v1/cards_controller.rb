@@ -78,7 +78,7 @@ class Api::V1::CardsController < ApplicationController
       %i[t card_type],
       %i[r rarity],
       %i[type card_type],
-      %i[r regions],
+      %i[reg regions],
       %i[k keywords],
       %i[f formats],
       %i[l language],
