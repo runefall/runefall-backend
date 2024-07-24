@@ -35,7 +35,7 @@ class Api::V1::CardsController < ApplicationController
     #   ["draven"]
     # ]
     attributes_from_query = params[:query].scan(
-      /((\w*:".*?"|\w*:\w*)?(\w*:".*?"|\w*:\w*)|\w*)/
+      /((\w+:".*?"|\w+:\w+)?(\w+:".*?"|\w+:\w+)|\w+)/
     )
 
     # This hash will store the search parameters
