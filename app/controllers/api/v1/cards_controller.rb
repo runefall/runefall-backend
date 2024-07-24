@@ -42,7 +42,7 @@ class Api::V1::CardsController < ApplicationController
     # Name is initially an empty string because we will
     # use string concatenation to build the name attribute
     attributes = {
-      name: ""
+      name: []
     }
 
     # This loop iterates over the array of arrays
@@ -50,7 +50,7 @@ class Api::V1::CardsController < ApplicationController
     # If the key is empty, it appends the value to the name attribute.
     # It also removes any double quotes from the key and value.
     # => {
-    #   name: "Draven",
+    #   name: ["Draven"],
     #   region: "Ionia",
     #   description: "a description here"
     #  }
@@ -59,19 +59,38 @@ class Api::V1::CardsController < ApplicationController
         key, value = attr[0].split(":")
         attributes[key.delete('"').to_sym] = value.delete('"')
       elsif !attr[0].empty?
-        attributes[:name] += "#{attr[0]} ".delete('"')
+        attributes[:name] << attr[0].delete('"').strip
       end
     end
 
     # This removes the :name key if it is an empty string
     # Otherwise, it deletes any trailing whitespace
-    if attributes[:name].empty?
-      attributes.delete(:name)
-    else
-      attributes[:name].rstrip!
-    end
+    attributes.delete(:name) if attributes[:name] == []
+
+    reassign_keys(attributes)
 
     attributes
+  end
+
+  def reassign_keys(attributes)
+    [
+      %i[d description],
+      %i[t card_type],
+      %i[r rarity],
+      %i[type card_type],
+      %i[r regions],
+      %i[k keywords],
+      %i[f formats],
+      %i[l language],
+      %i[s set],
+      %i[ft flavor_text],
+      %i[a artist],
+      %i[region regions],
+      %i[format formats],
+      %i[keyword keywords]
+    ].each do |key, new_key|
+      attributes[new_key] = attributes.delete(key) if attributes.key?(key)
+    end
   end
 
   def valid_search_params?

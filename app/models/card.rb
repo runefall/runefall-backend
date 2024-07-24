@@ -2,10 +2,19 @@ class Card < ApplicationRecord
   def self.search(filters)
     cards = Card.all
 
+    # This searches for cards by name iteratively
+    # for each name in the query string
+    filters[:name]&.each do |name|
+      cards = cards.where(
+        "name ILIKE ?",
+        "%#{name}%"
+      )
+    end
+
     # This uses the ILIKE operator to search by
     # name, description, etc. in a case-insensitive manner
-    %i[name description rarity artist language set
-       flavor_text].each do |filter|
+    %i[description rarity artist language set
+       flavor_text card_type].each do |filter|
       next unless filters[filter]
 
       cards = cards.where(
@@ -14,24 +23,12 @@ class Card < ApplicationRecord
       )
     end
 
-    # Since "type" is a protected keyword, this searches the
-    # "card_type" column instead.
-    if filters[:type]
-      cards = cards.where(
-        "card_type ILIKE ?",
-        "%#{filters[:type]}%"
-      )
-    end
-
     # This uses the && operator to search by region, format, and keyword
     # It searches the string array columns for any of the values
     # contained within the query string, e.g. "Demacia, Ionia" searches
     # for cards that are in either Demacia or Ionia, or both.
-    %i[region format keyword].each do |filter|
+    %i[regions formats keywords].each do |filter|
       next unless filters[filter]
-
-      # changes "region" to "regions", "format" to "formats", etc.
-      key = filter.to_s.pluralize
 
       # changes "demacia, ionia" to ["Demacia", "Ionia"]
       # or "quick attack" to ["Quick Attack"]
