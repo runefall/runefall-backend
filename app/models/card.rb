@@ -2,43 +2,51 @@ class Card < ApplicationRecord
   def self.search(filters)
     cards = Card.all
 
-    filters.each do |filter|
-      key, value = filter.first
-      cards = cards.where("#{key} ILIKE ?", "%#{value}%")
+    # This uses the ILIKE operator to search by
+    # name, description, etc. in a case-insensitive manner
+    %i[name description type rarity artist language set
+       flavor_text].each do |filter|
+      next unless filters[filter]
+
+      cards = cards.where(
+        "#{filter} ILIKE ?",
+        "%#{filters[filter]}%"
+      )
+    end
+
+    # This uses the && operator to search by region, format, and keyword
+    # It searches the string array columns for any of the values
+    # contained within the query string.
+    %i[region format keyword].each do |filter|
+      next unless filters[filter]
+
+      # changes "region" to "regions", "format" to "formats", etc.
+      key = filter.to_s.pluralize
+
+      # changes "demacia, ionia" to ["Demacia", "Ionia"]
+      # or "quick attack" to ["Quick Attack"]
+      array_text = ""
+      values = filters[filter].split(",")
+      values.each_with_index do |value, i|
+        values[i] = value.strip.split(" ").map(&:capitalize).join(" ")
+
+        # changes ["Demacia", "Ionia"] to '"Demacia", "Ionia"'
+        # This is used in the SQL query
+        array_text += if i.zero?
+                        "\"#{value}\""
+                      else
+                        ", \"#{value}\""
+                      end
+      end
+
+      # This searches the string array columns for any of the values
+      # contained within the query string.
+      cards = cards.where(
+        "#{key} && ?",
+        "{#{array_text}}"
+      )
     end
 
     cards
-
-    # Card.where('name ILIKE ? AND description ILIKE ?', "%#{filters[:name]}%", "%#{filters[:description]}%")
-    # cards = Array.new
-
-    # Card.where('name ILIKE ?', "%#{filters[:name]}%").where('description ILIKE ?', "%#{filters[:description]}%")
-
-    # cards = cards.flatten
-
-    # x = Card.all.reduce([]) do |cards|
-    #   require 'pry'; binding.pry
-    #   query.each do |k, v|
-    #     self.where("#{k} ILIKE ?", "%#{v}%")
-    #   end
-    # end
-
-    # cards = Card.all
-    # final_cards = []
-    # filters.each do |filter|
-    #   key, value = filter.first
-    #   require 'pry'; binding.pry
-    #   final_cards = case key
-    #   when :description
-    #     cards = cards.where('description ILIKE ?', "%#{value}%")
-    #   when :name
-    #     cards = cards.where('name ILIKE ?', "%#{value}%")
-    #   else
-    #     # Handle other filters or log an error if needed
-    #     # Example: cards = cards.where(key => value)
-    #   end
-    # end
-
-    # final_cards
   end
 end

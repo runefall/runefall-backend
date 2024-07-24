@@ -24,26 +24,51 @@ class Api::V1::CardsController < ApplicationController
   end
 
   private
+
   def format_search_params
-    query_params = params[:query].split(" ")
-    query_params.map do |string|
-      if string.include?(":")
-        filter_array = string.split(":")
-        { filter_array[0].to_sym => filter_array[1] }
-      else
-        { name: string }
+    # This regular expression splits the query string
+    # into an array of arrays. Each sub-array contains
+    # the key-value pair or a single word.
+    attributes_from_query = params[:query].scan(
+      /((\w*:".*?"|\w*:\w*)?(\w*:".*?"|\w*:\w*)|\w*)/
+    )
+
+    # This hash will store the search parameters
+    attributes = {
+      name: ""
+    }
+
+    # This loop iterates over the array of arrays
+    # and assigns the key-value pairs to the attributes hash
+    # and the single words to the :name key.
+    attributes_from_query.each do |attr|
+      if attr[0].include?(":")
+        key, value = attr[0].split(":")
+        attributes[key.delete('"').to_sym] = value.delete('"')
+      elsif !attr[0].empty?
+        attributes[:name] += "#{attr[0]} ".delete('"')
       end
     end
+
+    # This removes the :name key if it is empty
+    if attributes[:name].empty?
+      attributes.delete(:name)
+    else
+      attributes[:name].rstrip!
+    end
+
+    attributes
   end
 
   def valid_search_params?
     format_search_params.all? do |param|
-      key, _ = param.first
+      key, = param.first
       permitted_search_criteria.include?(key)
     end
   end
 
   def permitted_search_criteria
-    [:name, :description]
+    %i[name description type rarity region keyword format artist
+       language set flavor_text]
   end
 end
