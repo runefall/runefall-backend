@@ -29,18 +29,30 @@ class Api::V1::CardsController < ApplicationController
     # This regular expression splits the query string
     # into an array of arrays. Each sub-array contains
     # the key-value pair or a single word.
+    # => [
+    #   ["region:ionia"],
+    #   ['description:"a description here"'],
+    #   ["draven"]
+    # ]
     attributes_from_query = params[:query].scan(
       /((\w*:".*?"|\w*:\w*)?(\w*:".*?"|\w*:\w*)|\w*)/
     )
 
     # This hash will store the search parameters
+    # Name is initially an empty string because we will
+    # use string concatenation to build the name attribute
     attributes = {
       name: ""
     }
 
     # This loop iterates over the array of arrays
-    # and assigns the key-value pairs to the attributes hash
-    # and the single words to the :name key.
+    # and assigns the key-value pairs to the attributes hash.
+    # If the key is empty, it appends the value to the name attribute.
+    # => {
+    #   name: "Draven",
+    #   region: "Ionia",
+    #   description: "a description here"
+    #  }
     attributes_from_query.each do |attr|
       if attr[0].include?(":")
         key, value = attr[0].split(":")
@@ -50,7 +62,8 @@ class Api::V1::CardsController < ApplicationController
       end
     end
 
-    # This removes the :name key if it is empty
+    # This removes the :name key if it is an empty string
+    # Otherwise, it deletes any trailing whitespace
     if attributes[:name].empty?
       attributes.delete(:name)
     else

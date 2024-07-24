@@ -25,7 +25,8 @@ class Card < ApplicationRecord
 
     # This uses the && operator to search by region, format, and keyword
     # It searches the string array columns for any of the values
-    # contained within the query string.
+    # contained within the query string, e.g. "Demacia, Ionia" searches
+    # for cards that are in either Demacia or Ionia, or both.
     %i[region format keyword].each do |filter|
       next unless filters[filter]
 
