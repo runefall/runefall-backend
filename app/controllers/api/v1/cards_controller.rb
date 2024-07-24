@@ -19,7 +19,8 @@ class Api::V1::CardsController < ApplicationController
       cards = Card.search(format_search_params)
       render json: CardSerializer.new(cards)
     else
-      render json: { error: "Invalid search query" }, status: :bad_request
+      render json: { error: find_invalid_search_keys },
+             status: :bad_request
     end
   end
 
@@ -70,6 +71,20 @@ class Api::V1::CardsController < ApplicationController
     reassign_keys(attributes)
 
     attributes
+  end
+
+  def find_invalid_search_keys
+    invalid_keys = []
+    format_search_params.each do |param|
+      key, = param.first
+      invalid_keys << key unless permitted_search_criteria.include?(key)
+    end
+    invalid_text = invalid_keys.join(", ")
+    if invalid_keys.length > 1
+      "[#{invalid_text}] are invalid search queries"
+    else
+      "#{invalid_text} is an invalid search query"
+    end
   end
 
   def reassign_keys(attributes)
