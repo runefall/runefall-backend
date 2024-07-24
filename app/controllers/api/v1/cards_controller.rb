@@ -48,6 +48,7 @@ class Api::V1::CardsController < ApplicationController
     # This loop iterates over the array of arrays
     # and assigns the key-value pairs to the attributes hash.
     # If the key is empty, it appends the value to the name attribute.
+    # It also removes any double quotes from the key and value.
     # => {
     #   name: "Draven",
     #   region: "Ionia",
