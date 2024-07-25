@@ -41,4 +41,15 @@ class Card < ApplicationRecord
 
     # final_cards
   end
+
+  def self.random_cards(limit)
+    random_ids = (1..2368).to_a.sample(limit)
+    cards = where(id: random_ids)
+
+    if limit == 1
+      cards.first
+    else
+      cards
+    end
+  end
 end
