@@ -60,7 +60,7 @@ RSpec.describe Card, type: :model do
 
   describe "#random_cards" do
     before(:each) do
-      (1..2368).each do |num|
+      (1..10).each do |num|
         create(:card, id: num)
       end
     end
