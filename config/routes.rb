@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :cards, only: %i[index]
-      get 'cards/search', to: 'cards#search'
-      get 'cards/:card_code', to: 'cards#show'
+      get "cards/search", to: "cards#search"
+      get "cards/random", to: "cards#random"
+      get "cards/:card_code", to: "cards#show"
     end
   end
   # Defines the root path route ("/")

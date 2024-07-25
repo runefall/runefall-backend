@@ -23,7 +23,19 @@ class Api::V1::CardsController < ApplicationController
     end
   end
 
+  def random
+    limit = if params[:limit].to_i > 0
+              params[:limit].to_i
+            else
+              1
+            end
+
+    cards = Card.random_cards(limit)
+    render json: CardSerializer.new(cards)
+  end
+
   private
+
   def format_search_params
     query_params = params[:query].split(" ")
     query_params.map do |string|
@@ -38,12 +50,12 @@ class Api::V1::CardsController < ApplicationController
 
   def valid_search_params?
     format_search_params.all? do |param|
-      key, _ = param.first
+      key, = param.first
       permitted_search_criteria.include?(key)
     end
   end
 
   def permitted_search_criteria
-    [:name, :description]
+    %i[name description]
   end
 end
