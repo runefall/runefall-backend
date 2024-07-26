@@ -96,13 +96,13 @@ class Api::V1::CardsController < ApplicationController
       %i[reg regions],
       %i[k keywords],
       %i[f formats],
-      %i[l language],
       %i[s set],
       %i[ft flavor_text],
-      %i[a artist],
+      %i[a artist_name],
       %i[region regions],
       %i[format formats],
-      %i[keyword keywords]
+      %i[keyword keywords],
+      %i[artist artist_name]
     ].each do |key, new_key|
       attributes[new_key] = attributes.delete(key) if attributes.key?(key)
     end
@@ -117,6 +117,6 @@ class Api::V1::CardsController < ApplicationController
 
   def permitted_search_criteria
     %i[name description type rarity region keyword format artist
-       language set flavor_text]
+       set flavor_text]
   end
 end
