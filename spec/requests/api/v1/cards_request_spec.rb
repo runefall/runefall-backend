@@ -1,13 +1,13 @@
 require "rails_helper"
+require "cgi"
 
 # rubocop:disable Metrics/BlockLength
+# rubocop:disable Style/StringConcatenation
 RSpec.describe Api::V1::CardsController, type: :request do
   before :each do
     @card = create(:card)
     @cards = create_list(:card, 3, associated_card_refs: [@card.card_code])
-    @card.update(associated_card_refs: @cards.map do |card|
-      card.card_code
-    end)
+    @card.update(associated_card_refs: @cards.map(&:card_code))
   end
 
   describe "GET /api/v1/cards/:card_code" do
@@ -96,7 +96,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       create_list(:card, 3, name: "Draven")
       create_list(:card, 3, name: "Draven", description: "axe")
 
-      get "/api/v1/cards/search?query=drav%20description%3aaxe"
+      get "/api/v1/cards/search?query=" + CGI.escape("drav description:axe")
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -119,7 +119,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
         description: "whirling axe"
       )
 
-      get "/api/v1/cards/search?query=drav%20whir"
+      get "/api/v1/cards/search?query=" + CGI.escape("drav whir")
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -169,7 +169,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search by description
 
-      get "/api/v1/cards/search?query=d%3A%22a%20desc%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('d:"a desc"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -180,7 +180,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
-      get "/api/v1/cards/search?query=description%3A%22a%20desc%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('description:"a desc"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -193,7 +193,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search by regions
 
-      get "/api/v1/cards/search?query=region%3A%22here%2C+there%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('region:"here, there"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -204,7 +204,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
-      get "/api/v1/cards/search?query=reg%3A%22here%2C+there%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('reg:"here, there"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -217,7 +217,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search by formats
 
-      get "/api/v1/cards/search?query=format%3A%22format%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('format:"format"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -228,7 +228,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
-      get "/api/v1/cards/search?query=f%3A%22format%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('f:"format"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -241,7 +241,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search by keywords
 
-      get "/api/v1/cards/search?query=keyword%3A%22keyword%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('keyword:"keyword"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -252,7 +252,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
-      get "/api/v1/cards/search?query=k%3A%22keyword%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('k:"keyword"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -265,7 +265,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search by artist_name
 
-      get "/api/v1/cards/search?query=artist%3A%22beelzebub%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('artist:"beelzebub"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -276,7 +276,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
-      get "/api/v1/cards/search?query=a%3A%22beelzebub%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('a:"beelzebub"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -289,7 +289,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search by rarity
 
-      get "/api/v1/cards/search?query=rarity%3A%22notrare%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('rarity:"notrare"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -300,7 +300,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
-      get "/api/v1/cards/search?query=r%3A%22notrare%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('r:"notrare"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -313,7 +313,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search by set
 
-      get "/api/v1/cards/search?query=set%3A%22set5%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('set:"set5"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -324,7 +324,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
-      get "/api/v1/cards/search?query=s%3A%22set5%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('s:"set5"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -337,7 +337,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search by flavor_text
 
-      get "/api/v1/cards/search?query=flavor_text%3A%22chocolate%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('flavor_text:"chocolate"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -348,7 +348,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
-      get "/api/v1/cards/search?query=ft%3A%22chocolate%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('ft:"chocolate"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -361,7 +361,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search by card_type
 
-      get "/api/v1/cards/search?query=type%3A%22type%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('type:"type"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -372,7 +372,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
-      get "/api/v1/cards/search?query=t%3A%22type%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('t:"type"')
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -385,18 +385,19 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search by multiple parameters
 
-      query = "/api/v1/cards/search?query=" \
-              "description%3A%22a%20desc%22%20" \
-              "region%3A%22here%2C+there%22%" \
-              "20format%3A%22format%22" \
-              "%20keyword%3A%22keyword%22" \
-              "%20artist%3A%22beelzebub%22" \
-              "%20rarity%3A%22notrare%22" \
-              "%20set%3A%22set5%22" \
-              "%20flavor_text%3A%22chocolate%22" \
-              "%20type%3A%22type%22"
+      url = "/api/v1/cards/search?query="
 
-      get query
+      query = 'description:"a desc" ' \
+              'region:"here, there" ' \
+              'format:"format" ' \
+              'keyword:"keyword" ' \
+              'artist:"beelzebub" ' \
+              'rarity:"notrare" ' \
+              'set:"set5" ' \
+              'flavor_text:"chocolate" ' \
+              'type:"type"'
+
+      get url + CGI.escape(query)
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -420,7 +421,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search for card with description that doesn't exist
 
-      get "/api/v1/cards/search?query=description%3A%22non_existent%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('description:"non_existent"')
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -432,7 +433,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search for card with region that doesn't exist
 
-      get "/api/v1/cards/search?query=region%3A%22non_existent%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('region:"non_existent"')
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -444,7 +445,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search for card with format that doesn't exist
 
-      get "/api/v1/cards/search?query=format%3A%22non_existent%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('format:"non_existent"')
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -456,7 +457,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search for card with keyword that doesn't exist
 
-      get "/api/v1/cards/search?query=keyword%3A%22non_existent%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('keyword:"non_existent"')
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -468,7 +469,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search for card with artist_name that doesn't exist
 
-      get "/api/v1/cards/search?query=artist%3A%22non_existent%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('artist:"non_existent"')
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -480,7 +481,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search for card with rarity that doesn't exist
 
-      get "/api/v1/cards/search?query=rarity%3A%22non_existent%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('rarity:"non_existent"')
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -492,7 +493,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search for card with set that doesn't exist
 
-      get "/api/v1/cards/search?query=set%3A%22non_existent%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('set:"non_existent"')
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -504,7 +505,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search for card with flavor_text that doesn't exist
 
-      get "/api/v1/cards/search?query=flavor_text%3A%22non_existent%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('flavor_text:"non_existent"')
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -516,7 +517,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search for card with card_type that doesn't exist
 
-      get "/api/v1/cards/search?query=type%3A%22non_existent%22"
+      get "/api/v1/cards/search?query=" + CGI.escape('type:"non_existent"')
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -528,18 +529,18 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       # Search for card with multiple parameters that don't exist
 
-      query = "/api/v1/cards/search?query=" \
-              "description%3A%22non_existent%22%20" \
-              "region%3A%22non_existent%22%" \
-              "20format%3A%22non_existent%22" \
-              "%20keyword%3A%22non_existent%22" \
-              "%20artist%3A%22non_existent%22" \
-              "%20rarity%3A%22non_existent%22" \
-              "%20set%3A%22non_existent%22" \
-              "%20flavor_text%3A%22non_existent%22" \
-              "%20type%3A%22non_existent%22"
+      url = "/api/v1/cards/search?query="
+      query = 'description:"non_existent" ' \
+              'region:"non_existent" ' \
+              'format:"non_existent" ' \
+              'keyword:"non_existent" ' \
+              'artist:"non_existent" ' \
+              'rarity:"non_existent" ' \
+              'set:"non_existent" ' \
+              'flavor_text:"non_existent" ' \
+              'type:"non_existent" '
 
-      get query
+      get url + CGI.escape(query)
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -549,8 +550,17 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(0)
     end
 
+    it "does not break when given unexpected characters" do
+      query = "`~!@#$%^&*()_+-=[]{}|;':,.<>?\\\"/"
+
+      get "/api/v1/cards/search?query=#{CGI.escape(query)}"
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+    end
+
     it "returns an unsupported query error if an invalid filter is used" do
-      get "/api/v1/cards/search?query=drav%20invalid%3aaxe"
+      get "/api/v1/cards/search?query=" + CGI.escape("drav invalid:axe")
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
@@ -558,7 +568,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
     end
 
     it "returns an unsupported query error if multiple invalid filters are used" do
-      get "/api/v1/cards/search?query=drav%20invalid%3aaxe%20invalid2%3aaxe"
+      get "/api/v1/cards/search?query=" + CGI.escape("drav invalid:axe invalid2:axe")
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
@@ -568,7 +578,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
     end
 
     it "returns an unsupported query error if an invalid filter is used with a valid filter" do
-      get "/api/v1/cards/search?query=drav%20invalid%3aaxe%20description%3aaxe"
+      get "/api/v1/cards/search?query=" + CGI.escape("drav invalid:axe description:axe")
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
@@ -577,3 +587,4 @@ RSpec.describe Api::V1::CardsController, type: :request do
   end
 end
 # rubocop:enable Metrics/BlockLength
+# rubocop:enable Style/StringConcatenation
