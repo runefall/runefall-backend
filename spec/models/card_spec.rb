@@ -56,5 +56,76 @@ RSpec.describe Card, type: :model do
       expect(cards).to include(temp_card)
       expect(cards).to_not include(@card2)
     end
+
+    it "returns a card based on the rarity, artist, set, flavor_text, and card_type with partial case-insensitive matches" do
+      temp_card = create(
+        :card,
+        rarity: "Champion",
+        artist_name: "SIXMOREVODKA",
+        set: "Set1",
+        flavor_text: "flavor text",
+        card_type: "Unit22"
+      )
+
+      search_array = { rarity: "champio" }
+
+      cards = Card.search(search_array)
+
+      expect(cards).to be_an(ActiveRecord::Relation)
+      expect(cards.count).to eq(1)
+      expect(cards).to include(temp_card)
+      expect(cards).to_not include(@card1)
+
+      search_array = { artist_name: "sixmorevodk" }
+
+      cards = Card.search(search_array)
+
+      expect(cards).to be_an(ActiveRecord::Relation)
+      expect(cards.count).to eq(1)
+      expect(cards).to include(temp_card)
+      expect(cards).to_not include(@card1)
+
+      search_array = { set: "set1" }
+
+      cards = Card.search(search_array)
+
+      expect(cards).to be_an(ActiveRecord::Relation)
+      expect(cards.count).to eq(1)
+      expect(cards).to include(temp_card)
+      expect(cards).to_not include(@card1)
+
+      search_array = { flavor_text: "flavor tex" }
+
+      cards = Card.search(search_array)
+
+      expect(cards).to be_an(ActiveRecord::Relation)
+      expect(cards.count).to eq(1)
+      expect(cards).to include(temp_card)
+      expect(cards).to_not include(@card1)
+
+      search_array = { card_type: "unit2" }
+
+      cards = Card.search(search_array)
+
+      expect(cards).to be_an(ActiveRecord::Relation)
+      expect(cards.count).to eq(1)
+      expect(cards).to include(temp_card)
+      expect(cards).to_not include(@card1)
+
+      search_array = {
+        rarity: "champio",
+        artist_name: "sixmorevodk",
+        set: "set1",
+        flavor_text: "flavor tex",
+        card_type: "uni"
+      }
+
+      cards = Card.search(search_array)
+
+      expect(cards).to be_an(ActiveRecord::Relation)
+      expect(cards.count).to eq(1)
+      expect(cards).to include(temp_card)
+      expect(cards).to_not include(@card1)
+    end
   end
 end
