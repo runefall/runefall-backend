@@ -60,11 +60,11 @@ class Api::V1::CardsController < ApplicationController
         key, value = attr[0].split(":")
         key_symbol = key.delete('"').to_sym
 
-        attributes[key_symbol] = if key_symbol == :name
-                                   value.delete('"').strip.split(" ")
-                                 else
-                                   value.delete('"')
-                                 end
+        if attributes[key_symbol]
+          attributes[key_symbol] << value.delete('"').strip
+        else
+          attributes[key_symbol] = [value.delete('"').strip]
+        end
       elsif !attr[0].empty?
         attributes[:name] << attr[0].delete('"').strip
       end

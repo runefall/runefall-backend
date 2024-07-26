@@ -17,10 +17,12 @@ class Card < ApplicationRecord
        flavor_text card_type].each do |filter|
       next unless filters[filter]
 
-      cards = cards.where(
-        "#{filter} ILIKE ?",
-        "%#{filters[filter]}%"
-      )
+      filters[filter]&.each do |value|
+        cards = cards.where(
+          "#{filter} ILIKE ?",
+          "%#{value}%"
+        )
+      end
     end
 
     # This uses the && operator to search by region, format, and keyword
