@@ -58,7 +58,13 @@ class Api::V1::CardsController < ApplicationController
     attributes_from_query.each do |attr|
       if attr[0].include?(":")
         key, value = attr[0].split(":")
-        attributes[key.delete('"').to_sym] = value.delete('"')
+        key_symbol = key.delete('"').to_sym
+
+        attributes[key_symbol] = if key_symbol == :name
+                                   value.delete('"').strip.split(" ")
+                                 else
+                                   value.delete('"')
+                                 end
       elsif !attr[0].empty?
         attributes[:name] << attr[0].delete('"').strip
       end
