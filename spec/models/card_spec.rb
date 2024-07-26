@@ -57,7 +57,7 @@ RSpec.describe Card, type: :model do
       expect(cards).to_not include(@card2)
     end
 
-    it "returns a card based on the rarity, artist, set, flavor_text, and card_type with partial case-insensitive matches" do
+    it "returns a card based on the rarity, artist_name, set, flavor_text, and card_type with partial case-insensitive matches" do
       temp_card = create(
         :card,
         rarity: "Champion",
@@ -117,7 +117,7 @@ RSpec.describe Card, type: :model do
         artist_name: "sixmorevodk",
         set: "set1",
         flavor_text: "flavor tex",
-        card_type: "uni"
+        card_type: "unit2"
       }
 
       cards = Card.search(search_array)
