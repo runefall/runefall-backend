@@ -9,6 +9,8 @@
 #   end
 require "json"
 
+Card.destroy_all
+
 set_1_json = JSON.parse(File.read("db/data/set1.json"), symbolize_names: true)
 set_2_json = JSON.parse(File.read("db/data/set2.json"), symbolize_names: true)
 set_3_json = JSON.parse(File.read("db/data/set3.json"), symbolize_names: true)
@@ -42,6 +44,15 @@ sets.each do |set|
       game_absolute_path: card[:assets].first[:gameAbsolutePath],
       full_absolute_path: card[:assets].first[:fullAbsolutePath]
     }]
+
+    card[:regions] = card[:regions].reduce([]) do |acc, region|
+      acc << if region == "Piltover & Zaun"
+               "Piltover And Zaun"
+             else
+               region
+             end
+    end
+
     Card.create!(
       name: card[:name],
       card_code: card[:cardCode],

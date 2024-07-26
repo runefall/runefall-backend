@@ -35,8 +35,16 @@ class Card < ApplicationRecord
       # changes "demacia, ionia" to ["Demacia", "Ionia"]
       # or "quick attack" to ["Quick Attack"]
       array_text = ""
-      values = filters[filter].split(",")
-      values.each_with_index do |value, i|
+
+      filters[filter] = filters[filter].map do |value|
+        value.split(", ").map do |word|
+          word.split(" ").map(&:capitalize).join(" ")
+        end
+      end
+
+      filters[filter].flatten!
+
+      filters[filter].each_with_index do |value, i|
         capitalized_value = value.strip.split(" ").map(&:capitalize).join(" ")
 
         # It then changes ["Demacia", "Ionia"] to '"Demacia", "Ionia"'
