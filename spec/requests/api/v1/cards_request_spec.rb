@@ -150,7 +150,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
         health: 4
       )
 
-      card2 = create(
+      create(
         :card,
         name: "Draven's Whirling Death",
         description: "whirling axe",
