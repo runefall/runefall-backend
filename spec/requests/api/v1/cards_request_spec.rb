@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Api::V1::CardsController, type: :request do
   before :each do
@@ -9,8 +9,8 @@ RSpec.describe Api::V1::CardsController, type: :request do
     end)
   end
 
-  describe 'GET /api/v1/cards/:card_code' do
-    it 'returns the card with the specified card_code' do
+  describe "GET /api/v1/cards/:card_code" do
+    it "returns the card with the specified card_code" do
       get "/api/v1/cards/#{@card.card_code}"
 
       parsed_card = JSON.parse(response.body, symbolize_names: true)[:data]
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(response.status).to eq(200)
 
       expect(parsed_card[:id]).to eq(@card.id.to_s)
-      expect(parsed_card[:type]).to eq('card')
+      expect(parsed_card[:type]).to eq("card")
 
       card_attributes = parsed_card[:attributes]
 
@@ -47,26 +47,26 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(card_attributes[:keyword_refs]).to eq(@card.keyword_refs)
       expect(card_attributes[:formats]).to eq(@card.formats)
       expect(card_attributes[:format_refs]).to eq(@card.format_refs)
-      expect(card_attributes[:assets].first[:game_absolute_path]).to eq(@card.assets.first['game_absolute_path'])
-      expect(card_attributes[:assets].first[:full_absolute_path]).to eq(@card.assets.first['full_absolute_path'])
+      expect(card_attributes[:assets].first[:game_absolute_path]).to eq(@card.assets.first["game_absolute_path"])
+      expect(card_attributes[:assets].first[:full_absolute_path]).to eq(@card.assets.first["full_absolute_path"])
       expect(card_attributes[:associated_cards].count).to eq(3)
       expect(card_attributes[:associated_cards].first[:card_code]).to eq(@cards.first.card_code)
       expect(card_attributes[:associated_cards].second[:card_code]).to eq(@cards.second.card_code)
       expect(card_attributes[:associated_cards].third[:card_code]).to eq(@cards.third.card_code)
     end
 
-    it 'returns a not found error if the card with the specified card_code does not exist' do
-      get '/api/v1/cards/non_existent_card_code'
+    it "returns a not found error if the card with the specified card_code does not exist" do
+      get "/api/v1/cards/non_existent_card_code"
 
       expect(response).to_not be_successful
       expect(response.status).to eq(404)
-      expect(response.body).to include('Card not found')
+      expect(response.body).to include("Card not found")
     end
   end
 
-  describe 'GET /api/v1/cards' do
-    it 'returns all cards' do
-      get '/api/v1/cards'
+  describe "GET /api/v1/cards" do
+    it "returns all cards" do
+      get "/api/v1/cards"
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -83,10 +83,11 @@ RSpec.describe Api::V1::CardsController, type: :request do
     end
   end
 
-  describe 'GET /api/v1/cards/search' do
-    it 'returns any card that has an partial name match all of the search queries' do
+  describe "GET /api/v1/cards/search" do
+    it "returns any card that has an partial name match all of the search queries" do
       @card1 = create(:card, name: "Draven")
-      @card2 = create(:card, name: "Draven's Whirling Death", description: "whirling axe")
+      @card2 = create(:card, name: "Draven's Whirling Death",
+                             description: "whirling axe")
       @card3 = create(:card, name: "Potato", description: "whirling axe")
       create_list(:card, 3, name: "Draven")
       create_list(:card, 3, name: "Draven", description: "axe")
@@ -104,12 +105,12 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(response.body).to_not include(@card.card_code)
     end
 
-    it 'returns an unsupported query error if an invalid filter is used' do
+    it "returns an unsupported query error if an invalid filter is used" do
       get "/api/v1/cards/search?query=drav%20invalid%3aaxe"
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
-      expect(response.body).to include('Invalid search query')
+      expect(response.body).to include("invalid is an invalid search query")
     end
   end
 end
