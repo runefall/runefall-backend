@@ -4,9 +4,15 @@ RSpec.describe Card, type: :model do
   describe "Search" do
     before(:each) do
       @card1 = create(:card, name: "Draven")
-      @card2 = create(:card, name: "Draven's Whirling Death",
-                             description: "whirling axe")
+
+      @card2 = create(
+        :card,
+        name: "Draven's Whirling Death",
+        description: "whirling axe"
+      )
+
       @card3 = create(:card, name: "Potato", description: "whirling axe")
+
       create_list(:card, 3, name: "Draven")
       create_list(:card, 3, name: "Draven", description: "axe")
     end
@@ -45,8 +51,12 @@ RSpec.describe Card, type: :model do
     end
 
     it "returns all cards that satisfy ALL search parameters when multiple of the same search stynax is used and not just the last of that syntax" do
-      temp_card = create(:card, name: "Darius's Whirling Death",
-                                description: "whirling axe")
+      temp_card = create(
+        :card,
+        name: "Darius's Whirling Death",
+        description: "whirling axe"
+      )
+
       search_array = { name: %w[dar whir] }
 
       cards = Card.search(search_array)
