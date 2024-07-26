@@ -39,10 +39,11 @@ class Api::V1::CardsController < ApplicationController
       /((\w+:".*?"|\w+:\w+)?(\w+:".*?"|\w+:\w+)|\w+)/
     )
 
-    attributes_from_query.map! { |attr| attr.reject(&:nil?) }
-    attributes_from_query.map!(&:uniq!)
+    attributes_from_query = attributes_from_query.reduce([]) do |acc, attr|
+      acc << attr unless attr[0].nil?
+    end
 
-    p attributes_from_query
+    attributes_from_query.map!(&:uniq!)
 
     # This hash will store the search parameters
     # Name is initially an empty string because we will
