@@ -86,8 +86,11 @@ RSpec.describe Api::V1::CardsController, type: :request do
   describe "GET /api/v1/cards/search" do
     it "returns any card that has an partial name match all of the search queries" do
       @card1 = create(:card, name: "Draven")
-      @card2 = create(:card, name: "Draven's Whirling Death",
-                             description: "whirling axe")
+      @card2 = create(
+        :card,
+        name: "Draven's Whirling Death",
+        description: "whirling axe"
+      )
       @card3 = create(:card, name: "Potato", description: "whirling axe")
       create_list(:card, 3, name: "Draven")
       create_list(:card, 3, name: "Draven", description: "axe")
@@ -105,8 +108,280 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(response.body).to_not include(@card.card_code)
     end
 
+    it "searches by name when parameters are separated by a space" do
+      card1 = create(:card, name: "Draven")
+      card2 = create(
+        :card,
+        name: "Draven's Whirling Death",
+        description: "whirling axe"
+      )
+
+      get "/api/v1/cards/search?query=drav%20whir"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card2.card_code)
+      expect(response.body).to_not include(card1.card_code)
+    end
+
+    it "searches by all parameters and shortcuts" do
+      card1 = create(
+        :card,
+        name: "Billy",
+        description: "A description",
+        regions: %w[Here There],
+        formats: ["Format"],
+        keywords: ["Keyword"],
+        artist_name: "beelzebub",
+        rarity: "notrare",
+        set: "set5",
+        flavor_text: "chocolate",
+        card_type: "type",
+        attack: 2,
+        cost: 3,
+        health: 4
+      )
+      card2 = create(
+        :card,
+        name: "Draven's Whirling Death",
+        description: "whirling axe",
+        regions: %w[Demacia Ionia],
+        formats: ["Expedition"],
+        keywords: ["Quick Attack"],
+        artist_name: "Artist Name",
+        rarity: "Champion",
+        set: "Set Name",
+        flavor_text: "Flavor Text",
+        card_type: "Unit",
+        attack: 1,
+        cost: 2,
+        health: 3
+      )
+
+      get "/api/v1/cards/search?query=d%3A%22a%20desc%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=description%3A%22a%20desc%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=region%3A%22here%2C+there%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=reg%3A%22here%2C+there%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=format%3A%22format%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=f%3A%22format%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=keyword%3A%22keyword%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=k%3A%22keyword%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=artist%3A%22beelzebub%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=a%3A%22beelzebub%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=rarity%3A%22notrare%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=r%3A%22notrare%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=set%3A%22set5%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=s%3A%22set5%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=flavor_text%3A%22chocolate%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=ft%3A%22chocolate%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=type%3A%22type%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=t%3A%22type%22"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+    end
+
     it "returns an unsupported query error if an invalid filter is used" do
       get "/api/v1/cards/search?query=drav%20invalid%3aaxe"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+      expect(response.body).to include("invalid is an invalid search query")
+    end
+
+    it "returns an unsupported query error if multiple invalid filters are used" do
+      get "/api/v1/cards/search?query=drav%20invalid%3aaxe%20invalid2%3aaxe"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+      expect(response.body).to include(
+        "[invalid, invalid2] are invalid search queries"
+      )
+    end
+
+    it "returns an unsupported query error if an invalid filter is used with a valid filter" do
+      get "/api/v1/cards/search?query=drav%20invalid%3aaxe%20description%3aaxe"
 
       expect(response).to_not be_successful
       expect(response.status).to eq(400)
