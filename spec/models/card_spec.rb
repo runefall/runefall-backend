@@ -29,7 +29,7 @@ RSpec.describe Card, type: :model do
     end
 
     it "returns all cards with fuzzy description matches when the 'description:text' syntax is used" do
-      search_array = { description: "axe" }
+      search_array = { description: ["axe"] }
 
       cards = Card.search(search_array)
 
@@ -40,7 +40,7 @@ RSpec.describe Card, type: :model do
     end
 
     it "returns all cards that satisfy ALL search parameters when multiple search syntaxes are used" do
-      search_array = { name: ["drav"], description: "axe" }
+      search_array = { name: ["drav"], description: ["axe"] }
 
       cards = Card.search(search_array)
 
@@ -74,10 +74,13 @@ RSpec.describe Card, type: :model do
         artist_name: "SIXMOREVODKA",
         set: "Set1",
         flavor_text: "flavor text",
-        card_type: "Unit22"
+        card_type: "Unit22",
+        regions: ["Regionland"],
+        formats: ["Nonstandard"],
+        keywords: ["Slow Attack"]
       )
 
-      search_array = { rarity: "champio" }
+      search_array = { rarity: ["champio"] }
 
       cards = Card.search(search_array)
 
@@ -86,7 +89,7 @@ RSpec.describe Card, type: :model do
       expect(cards).to include(temp_card)
       expect(cards).to_not include(@card1)
 
-      search_array = { artist_name: "sixmorevodk" }
+      search_array = { artist_name: ["sixmorevodk"] }
 
       cards = Card.search(search_array)
 
@@ -95,7 +98,7 @@ RSpec.describe Card, type: :model do
       expect(cards).to include(temp_card)
       expect(cards).to_not include(@card1)
 
-      search_array = { set: "set1" }
+      search_array = { set: ["set1"] }
 
       cards = Card.search(search_array)
 
@@ -104,7 +107,7 @@ RSpec.describe Card, type: :model do
       expect(cards).to include(temp_card)
       expect(cards).to_not include(@card1)
 
-      search_array = { flavor_text: "flavor tex" }
+      search_array = { flavor_text: ["flavor tex"] }
 
       cards = Card.search(search_array)
 
@@ -113,7 +116,7 @@ RSpec.describe Card, type: :model do
       expect(cards).to include(temp_card)
       expect(cards).to_not include(@card1)
 
-      search_array = { card_type: "unit2" }
+      search_array = { card_type: ["unit2"] }
 
       cards = Card.search(search_array)
 
@@ -121,14 +124,50 @@ RSpec.describe Card, type: :model do
       expect(cards.count).to eq(1)
       expect(cards).to include(temp_card)
       expect(cards).to_not include(@card1)
+
+      search_array = { regions: %w[regionland Other] }
+
+      cards = Card.search(search_array)
+
+      expect(cards).to be_an(ActiveRecord::Relation)
+      expect(cards.count).to eq(1)
+      expect(cards).to include(temp_card)
+      expect(cards).to_not include(@card1)
+
+      search_array = { formats: %w[nonstandard Other] }
+
+      cards = Card.search(search_array)
+
+      expect(cards).to be_an(ActiveRecord::Relation)
+      expect(cards.count).to eq(1)
+      expect(cards).to include(temp_card)
+      expect(cards).to_not include(@card1)
+
+      search_array = { keywords: ["slow attack", "Other"] }
+
+      cards = Card.search(search_array)
+
+      expect(cards).to be_an(ActiveRecord::Relation)
+      expect(cards.count).to eq(1)
+      expect(cards).to include(temp_card)
 
       search_array = {
-        rarity: "champio",
-        artist_name: "sixmorevodk",
-        set: "set1",
-        flavor_text: "flavor tex",
-        card_type: "unit2"
+        rarity: ["champio"],
+        artist_name: ["sixmorevodk"],
+        set: ["set1"],
+        flavor_text: ["flavor tex"],
+        card_type: ["unit2"],
+        regions: %w[regionland Other],
+        formats: %w[nonstandard Other],
+        keywords: ["slow attack", "Other"]
       }
+
+      cards = Card.search(search_array)
+
+      expect(cards).to be_an(ActiveRecord::Relation)
+      expect(cards.count).to eq(1)
+      expect(cards).to include(temp_card)
+      expect(cards).to_not include(@card1)
 
       cards = Card.search(search_array)
 

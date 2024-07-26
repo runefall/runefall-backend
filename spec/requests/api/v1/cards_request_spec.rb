@@ -138,13 +138,13 @@ RSpec.describe Api::V1::CardsController, type: :request do
         name: "Billy",
         description: "A description",
         regions: %w[Here There],
-        formats: ["Format"],
-        keywords: ["Keyword"],
-        artist_name: "beelzebub",
-        rarity: "notrare",
-        set: "set5",
-        flavor_text: "chocolate",
-        card_type: "type",
+        formats: ["Format", "Other Format"],
+        keywords: ["Keyword", "Other Keyword"],
+        artist_name: "beelzebub artist",
+        rarity: "notrare commonish",
+        set: "set5 set6",
+        flavor_text: "chocolate vanilla",
+        card_type: "type notatype",
         attack: 2,
         cost: 3,
         health: 4
@@ -191,6 +191,17 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
+      get "/api/v1/cards/search?query=" + CGI.escape('description:"a" description:"desc"')
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
       # Search by regions
 
       get "/api/v1/cards/search?query=" + CGI.escape('region:"here, there"')
@@ -212,6 +223,16 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(response.status).to eq(200)
 
       expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+      expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=" + CGI.escape('region:"here" region:"there"')
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
@@ -239,6 +260,13 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
+      get "/api/v1/cards/search?query=" + CGI.escape('format:"format" format:"other format"')
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(parsed_cards.count).to eq(1)
+
       # Search by keywords
 
       get "/api/v1/cards/search?query=" + CGI.escape('keyword:"keyword"')
@@ -262,6 +290,13 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards).to be_an(Array)
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=" + CGI.escape('keyword:"keyword" keyword:"other keyword"')
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(parsed_cards.count).to eq(1)
 
       # Search by artist_name
 
@@ -287,6 +322,13 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
+      get "/api/v1/cards/search?query=" + CGI.escape('artist:"beelzebub" artist:"artist"')
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(parsed_cards.count).to eq(1)
+
       # Search by rarity
 
       get "/api/v1/cards/search?query=" + CGI.escape('rarity:"notrare"')
@@ -310,6 +352,13 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards).to be_an(Array)
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=" + CGI.escape('rarity:"notrare" rarity:"commonish"')
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(parsed_cards.count).to eq(1)
 
       # Search by set
 
@@ -335,6 +384,13 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
+      get "/api/v1/cards/search?query=" + CGI.escape('set:"set5" set:"set6"')
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(parsed_cards.count).to eq(1)
+
       # Search by flavor_text
 
       get "/api/v1/cards/search?query=" + CGI.escape('flavor_text:"chocolate"')
@@ -359,6 +415,13 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
 
+      get "/api/v1/cards/search?query=" + CGI.escape('flavor_text:"chocolate" flavor_text:"vanilla"')
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(parsed_cards.count).to eq(1)
+
       # Search by card_type
 
       get "/api/v1/cards/search?query=" + CGI.escape('type:"type"')
@@ -382,6 +445,13 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards).to be_an(Array)
       expect(parsed_cards.count).to eq(1)
       expect(response.body).to include(card1.card_code)
+
+      get "/api/v1/cards/search?query=" + CGI.escape('type:"type" type:"notatype"')
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(parsed_cards.count).to eq(1)
 
       # Search by multiple parameters
 
