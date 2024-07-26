@@ -116,7 +116,7 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def permitted_search_criteria
-    %i[name description type rarity region keyword format artist
+    %i[name description card_type rarity regions keywords formats artist_name
        set flavor_text]
   end
 end

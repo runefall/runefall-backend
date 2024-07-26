@@ -35,21 +35,21 @@ class Card < ApplicationRecord
       array_text = ""
       values = filters[filter].split(",")
       values.each_with_index do |value, i|
-        values[i] = value.strip.split(" ").map(&:capitalize).join(" ")
+        capitalized_value = value.strip.split(" ").map(&:capitalize).join(" ")
 
         # It then changes ["Demacia", "Ionia"] to '"Demacia", "Ionia"'
         # where each value is surrounded by double quotes and separated by commas
         array_text += if i.zero?
-                        "\"#{value}\""
+                        "\"#{capitalized_value}\""
                       else
-                        ", \"#{value}\""
+                        ", \"#{capitalized_value}\""
                       end
       end
 
       # The array_text string is then used in the SQL query like this:
       # WHERE regions && '{"Demacia", "Ionia"}'
       cards = cards.where(
-        "#{key} && ?",
+        "#{filter} && ?",
         "{#{array_text}}"
       )
     end
