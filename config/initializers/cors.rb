@@ -7,10 +7,11 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "localhost:5173", "localhost:4173", "https://runefall.netlify.app"
+    origins "localhost:5173", "localhost:4173", "127.0.0.1:5173",
+            "127.0.0.1:4173", "https://runefall.netlify.app"
 
     resource "*",
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+             headers: :any,
+             methods: %i[get post put patch delete options head]
   end
 end

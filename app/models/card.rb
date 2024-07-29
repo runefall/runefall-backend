@@ -2,44 +2,69 @@ class Card < ApplicationRecord
   def self.search(filters)
     cards = Card.all
 
-    filters.each do |filter|
-      key, value = filter.first
-      cards = cards.where("#{key} ILIKE ?", "%#{value}%")
+    # This searches for cards by name iteratively
+    # for each name in the query string
+    filters[:name]&.each do |name|
+      cards = cards.where(
+        "name ILIKE ?",
+        "%#{name}%"
+      )
+    end
+
+    # This uses the ILIKE operator to search by
+    # name, description, etc. in a case-insensitive manner
+    %i[description rarity artist_name set
+       flavor_text card_type].each do |filter|
+      next unless filters[filter]
+
+      filters[filter]&.each do |value|
+        cards = cards.where(
+          "#{filter} ILIKE ?",
+          "%#{value}%"
+        )
+      end
+    end
+
+    # This uses the && operator to search by region, format, and keyword
+    # It searches the string array columns for any of the values
+    # contained within the query string, e.g. "Demacia, Ionia" searches
+    # for cards that are in either Demacia or Ionia, or both.
+    %i[regions formats keywords].each do |filter|
+      next unless filters[filter]
+
+      # changes "demacia, ionia" to ["Demacia", "Ionia"]
+      # or "quick attack" to ["Quick Attack"]
+      array_text = ""
+
+      filters[filter] = filters[filter].map do |value|
+        value.split(", ").map do |word|
+          word.split(" ").map(&:capitalize).join(" ")
+        end
+      end
+
+      filters[filter].flatten!
+
+      filters[filter].each_with_index do |value, i|
+        capitalized_value = value.strip.split(" ").map(&:capitalize).join(" ")
+
+        # It then changes ["Demacia", "Ionia"] to '"Demacia", "Ionia"'
+        # where each value is surrounded by double quotes and separated by commas
+        array_text += if i.zero?
+                        "\"#{capitalized_value}\""
+                      else
+                        ", \"#{capitalized_value}\""
+                      end
+      end
+
+      # The array_text string is then used in the SQL query like this:
+      # WHERE regions && '{"Demacia", "Ionia"}'
+      cards = cards.where(
+        "#{filter} && ?",
+        "{#{array_text}}"
+      )
     end
 
     cards
-
-    # Card.where('name ILIKE ? AND description ILIKE ?', "%#{filters[:name]}%", "%#{filters[:description]}%")
-    # cards = Array.new
-
-    # Card.where('name ILIKE ?', "%#{filters[:name]}%").where('description ILIKE ?', "%#{filters[:description]}%")
-
-    # cards = cards.flatten
-
-    # x = Card.all.reduce([]) do |cards|
-    #   require 'pry'; binding.pry
-    #   query.each do |k, v|
-    #     self.where("#{k} ILIKE ?", "%#{v}%")
-    #   end
-    # end
-
-    # cards = Card.all
-    # final_cards = []
-    # filters.each do |filter|
-    #   key, value = filter.first
-    #   require 'pry'; binding.pry
-    #   final_cards = case key
-    #   when :description
-    #     cards = cards.where('description ILIKE ?', "%#{value}%")
-    #   when :name
-    #     cards = cards.where('name ILIKE ?', "%#{value}%")
-    #   else
-    #     # Handle other filters or log an error if needed
-    #     # Example: cards = cards.where(key => value)
-    #   end
-    # end
-
-    # final_cards
   end
 
   def self.random_cards(limit)
