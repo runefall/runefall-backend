@@ -15,13 +15,33 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def search
+    hash = nil
+
     if valid_search_params?
       cards = Card.search(format_search_params)
-      render json: CardSerializer.new(cards)
+      hash = CardSerializer.new(cards)
+      hash[:error] = []
     else
-      render json: { error: find_invalid_search_keys },
-             status: :bad_request
+      invalid = find_invalid_search_keys
+      params = format_search_params
+
+      invalid.each do |key|
+        params.delete(key)
+      end
+
+      cards = Card.search(params)
+      hash = CardSerializer.new(cards)
+
+      hash = JSON.parse(hash.to_json, symbolize_names: true)
+
+      hash[:error] = []
+
+      invalid.each do |key|
+        hash[:error] << "#{key} is an invalid search parameter"
+      end
     end
+
+    render json: hash
   end
 
   private
@@ -62,6 +82,13 @@ class Api::V1::CardsController < ApplicationController
     #   description: "a description here"
     #  }
     attributes_from_query.each do |attr|
+      if attr[0].include?("mode:") ||
+         attr[0].include?("attribute:") ||
+         attr[0].include?("direction:")
+
+        next
+      end
+
       if attr[0].include?(":")
         key, value = attr[0].split(":")
         key_symbol = key.delete('"').to_sym
@@ -91,12 +118,14 @@ class Api::V1::CardsController < ApplicationController
       key, = param.first
       invalid_keys << key unless permitted_search_criteria.include?(key)
     end
-    invalid_text = invalid_keys.join(", ")
-    if invalid_keys.length > 1
-      "[#{invalid_text}] are invalid search queries"
-    else
-      "#{invalid_text} is an invalid search query"
-    end
+
+    invalid_keys
+    # invalid_text = invalid_keys.join(", ")
+    # if invalid_keys.length > 1
+    #   "[#{invalid_text}] are invalid search queries"
+    # else
+    #   "#{invalid_text} is an invalid search query"
+    # end
   end
 
   def reassign_keys(attributes)
