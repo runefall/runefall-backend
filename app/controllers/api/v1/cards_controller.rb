@@ -30,10 +30,14 @@ class Api::V1::CardsController < ApplicationController
         params.delete(key)
       end
 
-      cards = Card.search(params)
-      hash = CardSerializer.new(cards)
+      if params != {}
+        cards = Card.search(params)
+        hash = CardSerializer.new(cards)
 
-      hash = JSON.parse(hash.to_json, symbolize_names: true)
+        hash = JSON.parse(hash.to_json, symbolize_names: true)
+      else
+        hash = { data: [] }
+      end
 
       hash[:error] = []
 
