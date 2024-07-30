@@ -12,7 +12,7 @@ class Card < ApplicationRecord
     # end
     # This uses the ILIKE operator to search by
     # name, description, etc. in a case-insensitive manner
-    %i[name description rarity artist_name set
+    %i[name description_raw rarity artist_name set
        flavor_text card_type].each do |filter|
       next unless filters[filter]
 

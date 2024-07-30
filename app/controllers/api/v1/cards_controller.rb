@@ -112,7 +112,8 @@ class Api::V1::CardsController < ApplicationController
 
   def reassign_keys(attributes)
     [
-      %i[d description],
+      %i[d description_raw],
+      %i[description description_raw],
       %i[t card_type],
       %i[r rarity],
       %i[type card_type],
@@ -139,7 +140,7 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def permitted_search_criteria
-    %i[name description card_type rarity regions keywords formats artist_name
+    %i[name description_raw card_type rarity regions keywords formats artist_name
        set flavor_text]
   end
 end

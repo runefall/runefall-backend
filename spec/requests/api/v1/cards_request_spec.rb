@@ -92,13 +92,13 @@ RSpec.describe Api::V1::CardsController, type: :request do
       card2 = create(
         :card,
         name: "Draven's Whirling Death",
-        description: "whirling axe"
+        description_raw: "whirling axe"
       )
-      card3 = create(:card, name: "Potato", description: "whirling axe")
+      card3 = create(:card, name: "Potato", description_raw: "whirling axe")
       create_list(:card, 3, name: "Draven")
-      create_list(:card, 3, name: "Draven", description: "axe")
+      create_list(:card, 3, name: "Draven", description_raw: "axe")
 
-      get "/api/v1/cards/search?query=" + CGI.escape("drav description:axe")
+      get "/api/v1/cards/search?query=" + CGI.escape("drav description_raw:axe")
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -118,7 +118,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       card2 = create(
         :card,
         name: "Draven's Whirling Death",
-        description: "whirling axe"
+        description_raw: "whirling axe"
       )
 
       get "/api/v1/cards/search?query=" + CGI.escape("drav whir")
@@ -138,7 +138,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       card1 = create(
         :card,
         name: "Billy",
-        description: "A description",
+        description_raw: "A description",
         regions: %w[Here There],
         formats: ["Format", "Other Format"],
         keywords: ["Keyword", "Other Keyword"],
@@ -155,7 +155,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       create(
         :card,
         name: "Draven's Whirling Death",
-        description: "whirling axe",
+        description_raw: "whirling axe",
         regions: %w[Demacia Ionia],
         formats: ["Expedition"],
         keywords: ["Quick Attack"],

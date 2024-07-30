@@ -8,13 +8,13 @@ RSpec.describe Card, type: :model do
       @card2 = create(
         :card,
         name: "Draven's Whirling Death",
-        description: "whirling axe"
+        description_raw: "whirling axe"
       )
 
-      @card3 = create(:card, name: "Potato", description: "whirling axe")
+      @card3 = create(:card, name: "Potato", description_raw: "whirling axe")
 
       create_list(:card, 3, name: "Draven")
-      create_list(:card, 3, name: "Draven", description: "axe")
+      create_list(:card, 3, name: "Draven", description_raw: "axe")
     end
 
     it "returns all cards with fuzzy name matches when a basic search is used" do
@@ -28,8 +28,8 @@ RSpec.describe Card, type: :model do
       expect(cards).to_not include(@card3)
     end
 
-    it "returns all cards with fuzzy description matches when the 'description:text' syntax is used" do
-      search_array = { description: ["axe"] }
+    it "returns all cards with fuzzy description matches when the 'description_raw:text' syntax is used" do
+      search_array = { description_raw: ["axe"] }
 
       cards = Card.search(search_array)
 
@@ -40,7 +40,7 @@ RSpec.describe Card, type: :model do
     end
 
     it "returns all cards that satisfy ALL search parameters when multiple search syntaxes are used" do
-      search_array = { name: ["drav"], description: ["axe"] }
+      search_array = { name: ["drav"], description_raw: ["axe"] }
 
       cards = Card.search(search_array)
 
@@ -54,7 +54,7 @@ RSpec.describe Card, type: :model do
       temp_card = create(
         :card,
         name: "Darius's Whirling Death",
-        description: "whirling axe"
+        description_raw: "whirling axe"
       )
 
       search_array = { name: %w[dar whir] }
