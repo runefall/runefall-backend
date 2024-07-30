@@ -4,16 +4,15 @@ class Card < ApplicationRecord
 
     # This searches for cards by name iteratively
     # for each name in the query string
-    filters[:name]&.each do |name|
-      cards = cards.where(
-        "name ILIKE ?",
-        "%#{name}%"
-      )
-    end
-
+    # filters[:name]&.each do |name|
+    #   cards = cards.where(
+    #     "name ILIKE ?",
+    #     "%#{name}%"
+    #   )
+    # end
     # This uses the ILIKE operator to search by
     # name, description, etc. in a case-insensitive manner
-    %i[description rarity artist_name set
+    %i[name description rarity artist_name set
        flavor_text card_type].each do |filter|
       next unless filters[filter]
 
