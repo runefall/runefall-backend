@@ -20,6 +20,7 @@ class Api::V1::CardsController < ApplicationController
     if valid_search_params?
       cards = Card.search(format_search_params)
       hash = CardSerializer.new(cards)
+      hash = JSON.parse(hash.to_json, symbolize_names: true)
       hash[:error] = []
     else
       invalid = find_invalid_search_keys
