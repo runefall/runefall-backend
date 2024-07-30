@@ -24,6 +24,7 @@ set_6cde_json = JSON.parse(
 set_7_json = JSON.parse(File.read("db/data/set7.json"), symbolize_names: true)
 set_7b_json = JSON.parse(File.read("db/data/set7b.json"), symbolize_names: true)
 set_8_json = JSON.parse(File.read("db/data/set8.json"), symbolize_names: true)
+set_9_json = JSON.parse(File.read("db/data/set9.json"), symbolize_names: true)
 
 sets = [
   set_1_json,
@@ -35,7 +36,8 @@ sets = [
   set_6cde_json,
   set_7_json,
   set_7b_json,
-  set_8_json
+  set_8_json,
+  set_9_json
 ]
 
 sets.each do |set|
