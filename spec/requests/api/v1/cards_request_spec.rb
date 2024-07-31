@@ -658,8 +658,8 @@ RSpec.describe Api::V1::CardsController, type: :request do
     end
   end
 
-  describe 'GET /api/v1/cards/random' do
-    it 'returns a random card' do
+  describe "GET /api/v1/cards/random" do
+    it "returns a random card" do
       get "/api/v1/cards/random"
 
       parsed_card = JSON.parse(response.body, symbolize_names: true)[:data]
@@ -667,7 +667,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(response).to be_successful
       expect(response.status).to eq(200)
 
-      expect(parsed_card[:type]).to eq('card')
+      expect(parsed_card[:type]).to eq("card")
 
       card_attributes = parsed_card[:attributes]
 
@@ -676,7 +676,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(card_attributes).to have_key(:description)
     end
 
-    it 'accepts a query parameter of limit that lets you return multiple random cards up to the limit' do
+    it "accepts a query parameter of limit that lets you return multiple random cards up to the limit" do
       get "/api/v1/cards/random?limit=2"
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
@@ -687,47 +687,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(2)
 
       parsed_cards.each do |card|
-        expect(card[:type]).to eq('card')
-
-        card_attributes = card[:attributes]
-
-        expect(card_attributes).to have_key(:name)
-        expect(card_attributes).to have_key(:card_code)
-        expect(card_attributes).to have_key(:description)
-      end
-    end
-  end
-
-  describe 'GET /api/v1/cards/random' do
-    it 'returns a random card' do
-      get "/api/v1/cards/random"
-
-      parsed_card = JSON.parse(response.body, symbolize_names: true)[:data]
-
-      expect(response).to be_successful
-      expect(response.status).to eq(200)
-
-      expect(parsed_card[:type]).to eq('card')
-
-      card_attributes = parsed_card[:attributes]
-
-      expect(card_attributes).to have_key(:name)
-      expect(card_attributes).to have_key(:card_code)
-      expect(card_attributes).to have_key(:description)
-    end
-
-    it 'accepts a query parameter of limit that lets you return multiple random cards up to the limit' do
-      get "/api/v1/cards/random?limit=2"
-
-      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
-
-      expect(response).to be_successful
-      expect(response.status).to eq(200)
-
-      expect(parsed_cards.count).to eq(2)
-
-      parsed_cards.each do |card|
-        expect(card[:type]).to eq('card')
+        expect(card[:type]).to eq("card")
 
         card_attributes = card[:attributes]
 
