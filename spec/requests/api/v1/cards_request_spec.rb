@@ -5,8 +5,10 @@ require "cgi"
 # rubocop:disable Style/StringConcatenation
 RSpec.describe Api::V1::CardsController, type: :request do
   before :each do
-    @card = create(:card)
-    @cards = create_list(:card, 3, associated_card_refs: [@card.card_code])
+    @card = create(:card, id: 1)
+    @cards = (2..4).map do |num|
+      create(:card, id: num, associated_card_refs: [@card.card_code])
+    end
     @card.update(associated_card_refs: @cards.map(&:card_code))
   end
 
@@ -667,6 +669,46 @@ RSpec.describe Api::V1::CardsController, type: :request do
       body = JSON.parse(response.body, symbolize_names: true)
       expect(body[:error]).to eq([])
       expect(body[:data].count > 0).to eq(true)
+    end
+  end
+
+  describe "GET /api/v1/cards/random" do
+    it "returns a random card" do
+      get "/api/v1/cards/random"
+
+      parsed_card = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_card[:type]).to eq("card")
+
+      card_attributes = parsed_card[:attributes]
+
+      expect(card_attributes).to have_key(:name)
+      expect(card_attributes).to have_key(:card_code)
+      expect(card_attributes).to have_key(:description)
+    end
+
+    it "accepts a query parameter of limit that lets you return multiple random cards up to the limit" do
+      get "/api/v1/cards/random?limit=2"
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards.count).to eq(2)
+
+      parsed_cards.each do |card|
+        expect(card[:type]).to eq("card")
+
+        card_attributes = card[:attributes]
+
+        expect(card_attributes).to have_key(:name)
+        expect(card_attributes).to have_key(:card_code)
+        expect(card_attributes).to have_key(:description)
+      end
     end
   end
 end

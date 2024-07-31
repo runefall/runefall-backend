@@ -177,4 +177,26 @@ RSpec.describe Card, type: :model do
       expect(cards).to_not include(@card1)
     end
   end
+
+  describe "#random_cards" do
+    before(:each) do
+      (1..10).each do |num|
+        create(:card, id: num)
+      end
+    end
+
+    it "can return a single random card" do
+      card = Card.random_cards(1)
+
+      expect(card).to be_a Card
+    end
+
+    it 'can return multiple random cards' do
+      cards = Card.random_cards(5)
+
+      expect(cards.count).to eq(5)
+      expect(cards).to all be_a Card
+      expect(cards.uniq.count).to eq(5)
+    end
+  end
 end

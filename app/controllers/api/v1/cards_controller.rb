@@ -51,6 +51,17 @@ class Api::V1::CardsController < ApplicationController
     render json: hash
   end
 
+  def random
+    limit = if params[:limit].to_i > 0
+              params[:limit].to_i
+            else
+              1
+            end
+
+    cards = Card.random_cards(limit)
+    render json: CardSerializer.new(cards)
+  end
+
   private
 
   def format_search_params
