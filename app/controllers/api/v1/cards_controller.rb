@@ -46,6 +46,10 @@ class Api::V1::CardsController < ApplicationController
       invalid.each do |key|
         hash[:error] << "#{key} is an invalid search parameter"
       end
+
+      if /\w+[<>=]=?/.match?(params[:query])
+        hash[:error] << "You must include a colon after the key, e.g. attack:<5"
+      end
     end
 
     render json: hash
@@ -202,6 +206,8 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def valid_search_params?
+    return false if /\w+[<>=]=?/.match?(params[:query])
+
     format_search_params.all? do |param|
       key, = param.first
       permitted_search_criteria.include?(key)
