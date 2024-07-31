@@ -54,18 +54,6 @@ class Api::V1::CardsController < ApplicationController
       )
     end
 
-    attributes_from_queries = attributes_from_queries.map do |query|
-      query.reduce([]) do |acc, attr|
-        acc << attr unless attr[0].nil?
-      end
-    end
-
-    attributes_from_queries.map! do |query|
-      query.map!(&:uniq!)
-    end
-    # This hash will store the search parameters
-    # Name is initially an empty string because we will
-    # use string concatenation to build the name attribute
     queries = []
     # This loop iterates over the array of arrays
     # and assigns the key-value pairs to the attributes hash.
@@ -102,7 +90,7 @@ class Api::V1::CardsController < ApplicationController
     # This removes the :name key if it is an empty string
     # Otherwise, it deletes any trailing whitespace
     queries.each do |attributes|
-      attributes.delete(:name) if attributes[:name] == []
+      attributes.delete(:name) if attributes[:name].empty?
       reassign_keys(attributes)
     end
 
