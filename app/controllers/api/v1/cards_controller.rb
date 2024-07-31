@@ -53,6 +53,7 @@ class Api::V1::CardsController < ApplicationController
         hash[:error] << "You must include a colon after the key, e.g. attack:<5"
       end
     end
+    hash[:error].uniq!
 
     render json: hash
   end
