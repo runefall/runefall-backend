@@ -24,17 +24,19 @@ class Api::V1::CardsController < ApplicationController
       hash[:error] = []
     else
       invalid = find_invalid_search_keys
-      params = format_search_params
+      valid_params = format_search_params
 
       invalid.each do |key|
-        params.delete(key)
+        valid_params.delete(key)
       end
 
-      if params != {}
-        cards = Card.search(params)
-        hash = CardSerializer.new(cards)
+      if valid_params != {}
+        cards = Card.search(valid_params)
 
-        hash = JSON.parse(hash.to_json, symbolize_names: true)
+        hash = JSON.parse(
+          CardSerializer.new(cards).to_json,
+          symbolize_names: true
+        )
       else
         hash = { data: [] }
       end
