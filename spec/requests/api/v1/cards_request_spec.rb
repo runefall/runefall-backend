@@ -632,27 +632,41 @@ RSpec.describe Api::V1::CardsController, type: :request do
     it "returns an unsupported query error if an invalid filter is used" do
       get "/api/v1/cards/search?query=" + CGI.escape("drav invalid:axe")
 
-      expect(response).to_not be_successful
-      expect(response.status).to eq(400)
-      expect(response.body).to include("invalid is an invalid search query")
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      body = JSON.parse(response.body, symbolize_names: true)
+      expect(body[:error]).to eq(["invalid is an invalid search parameter"])
     end
 
     it "returns an unsupported query error if multiple invalid filters are used" do
       get "/api/v1/cards/search?query=" + CGI.escape("drav invalid:axe invalid2:axe")
 
-      expect(response).to_not be_successful
-      expect(response.status).to eq(400)
-      expect(response.body).to include(
-        "[invalid, invalid2] are invalid search queries"
-      )
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      body = JSON.parse(response.body, symbolize_names: true)
+      expect(body[:error]).to eq([
+        "invalid is an invalid search parameter",
+        "invalid2 is an invalid search parameter"
+      ])
     end
 
     it "returns an unsupported query error if an invalid filter is used with a valid filter" do
       get "/api/v1/cards/search?query=" + CGI.escape("drav invalid:axe description:axe")
 
-      expect(response).to_not be_successful
-      expect(response.status).to eq(400)
-      expect(response.body).to include("invalid is an invalid search query")
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      body = JSON.parse(response.body, symbolize_names: true)
+      expect(body[:error]).to eq(["invalid is an invalid search parameter"])
+    end
+
+    it "ignores 'mode', 'attribute', and 'direction' parameters" do
+      get "/api/v1/cards/search?query=" + CGI.escape("#{@card.name} mode:image attribute:something direction:desc")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      body = JSON.parse(response.body, symbolize_names: true)
+      expect(body[:error]).to eq([])
+      expect(body[:data].count > 0).to eq(true)
     end
   end
 end
