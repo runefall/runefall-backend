@@ -74,7 +74,7 @@ class Api::V1::CardsController < ApplicationController
     #   ["draven"]
     # ]
     attributes_from_query = params[:query].scan(
-      /((\w+:".*?"|\w+:\w+)?(\w+:".*?"|\w+:\w+)|\w+)/
+      /((\w+:".*?"|\w+[:<>]=?\w+)?(\w+:".*?"|\w+:\w+|\w+[<>=]=?\d+)|\w+\b)/
     )
 
     attributes_from_query = attributes_from_query.reduce([]) do |acc, attr|
@@ -115,6 +115,33 @@ class Api::V1::CardsController < ApplicationController
           attributes[key_symbol] << value.delete('"').strip
         else
           attributes[key_symbol] = [value.delete('"').strip]
+        end
+      elsif /[<>=]{1}=?/.match?((attr[0]))
+        if /\w+<\d+\b/.match?((attr[0]))
+          key, value = attr[0].split("<")
+          key_symbol = key.delete('"').to_sym
+          value = value.to_i
+          attributes[key_symbol] = [:<, value]
+        elsif /\w+>\d+\b/.match?((attr[0]))
+          key, value = attr[0].split(">")
+          key_symbol = key.delete('"').to_sym
+          value = value.to_i
+          attributes[key_symbol] = [:>, value]
+        elsif /\w+=\d+\b/.match?((attr[0]))
+          key, value = attr[0].split("=")
+          key_symbol = key.delete('"').to_sym
+          value = value.to_i
+          attributes[key_symbol] = [:==, value]
+        elsif /\w+<=\d+\b/.match?((attr[0]))
+          key, value = attr[0].split("<=")
+          key_symbol = key.delete('"').to_sym
+          value = value.to_i
+          attributes[key_symbol] = [:<=, value]
+        elsif /\w+>=\d+\b/.match?((attr[0]))
+          key, value = attr[0].split(">=")
+          key_symbol = key.delete('"').to_sym
+          value = value.to_i
+          attributes[key_symbol] = [:>=, value]
         end
       elsif !attr[0].empty?
         attributes[:name] << attr[0].delete('"').strip
@@ -176,6 +203,6 @@ class Api::V1::CardsController < ApplicationController
 
   def permitted_search_criteria
     %i[name description card_type rarity regions keywords formats artist_name
-       set flavor_text]
+       set flavor_text cost health attack]
   end
 end

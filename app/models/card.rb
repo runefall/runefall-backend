@@ -11,6 +11,43 @@ class Card < ApplicationRecord
       )
     end
 
+    # This filters by cost, health, and attack, being either
+    # <, >, =, <=, or >= than the value in the query string
+    %i[cost health attack].each do |filter|
+      next unless filters[filter]
+
+      operator = filters[filter][0]
+      value = filters[filter][1]
+
+      case operator
+      when :<
+        cards = cards.where(
+          "#{filter} < ?",
+          value
+        )
+      when :>
+        cards = cards.where(
+          "#{filter} > ?",
+          value
+        )
+      when :==
+        cards = cards.where(
+          "#{filter} = ?",
+          value
+        )
+      when :<=
+        cards = cards.where(
+          "#{filter} <= ?",
+          value
+        )
+      when :>=
+        cards = cards.where(
+          "#{filter} >= ?",
+          value
+        )
+      end
+    end
+
     # This uses the ILIKE operator to search by
     # name, description, etc. in a case-insensitive manner
     %i[description rarity artist_name set
