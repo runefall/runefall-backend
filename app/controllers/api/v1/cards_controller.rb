@@ -150,9 +150,6 @@ class Api::V1::CardsController < ApplicationController
           value = value.delete('"').to_i
           attributes[key_symbol] = [:>=, value]
         end
-      elsif /:[<>=]?=?.*\b/.match?((attr[0]))
-        require "pry"
-        binding.pry
       elsif !attr[0].empty?
         attributes[:name] << attr[0].delete('"').strip
       end
