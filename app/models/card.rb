@@ -10,12 +10,10 @@ class Card < ApplicationRecord
       temp_cards[index] = cards
     end
 
-
-    # This uses the ILIKE operator to search by
-    # name, description, etc. in a case-insensitive manner
-    %i[name description_raw rarity artist_name set
-       flavor_text card_type].each do |filter|
-      queries.each_with_index do |filters, index|
+    queries.each_with_index do |filters, index|
+      # This uses the ILIKE operator to search by
+      # name, description, etc. in a case-insensitive manner
+      %i[name description_raw rarity artist_name set flavor_text card_type].each do |filter|
         next unless filters[filter]
 
         filters[filter]&.each do |value|
@@ -25,14 +23,12 @@ class Card < ApplicationRecord
           )
         end
       end
-    end
 
-    # This uses the && operator to search by region, format, and keyword
-    # It searches the string array columns for any of the values
-    # contained within the query string, e.g. "Demacia, Ionia" searches
-    # for cards that are in either Demacia or Ionia, or both.
-    %i[regions formats keywords].each do |filter|
-      queries.each_with_index do |filters, index|
+      # This uses the && operator to search by region, format, and keyword
+      # It searches the string array columns for any of the values
+      # contained within the query string, e.g. "Demacia, Ionia" searches
+      # for cards that are in either Demacia or Ionia, or both.
+      %i[regions formats keywords].each do |filter|
         next unless filters[filter]
 
         # changes "demacia, ionia" to ["Demacia", "Ionia"]
@@ -68,8 +64,6 @@ class Card < ApplicationRecord
       end
     end
 
-    # combined_sql = temp_cards.map(&:to_sql).join(' UNION ')
-    # final_cards = Card.find_by_sql(combined_sql)
     temp_cards.reduce { |combined, results| combined.or(results) }
   end
 
