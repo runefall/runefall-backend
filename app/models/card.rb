@@ -21,27 +21,27 @@ class Card < ApplicationRecord
 
       case operator
       when :<
-        cards = cards.where(
+        temp_cards[index] = temp_cards[index].where(
           "#{filter} < ?",
           value
         )
       when :>
-        cards = cards.where(
+        temp_cards[index] = temp_cards[index].where(
           "#{filter} > ?",
           value
         )
       when :==
-        cards = cards.where(
+        temp_cards[index] = temp_cards[index].where(
           "#{filter} = ?",
           value
         )
       when :<=
-        cards = cards.where(
+        temp_cards[index] = temp_cards[index].where(
           "#{filter} <= ?",
           value
         )
       when :>=
-        cards = cards.where(
+        temp_cards[index] = temp_cards[index].where(
           "#{filter} >= ?",
           value
         )
