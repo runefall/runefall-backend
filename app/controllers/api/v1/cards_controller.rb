@@ -46,6 +46,10 @@ class Api::V1::CardsController < ApplicationController
       invalid.each do |key|
         hash[:error] << "#{key} is an invalid search parameter"
       end
+
+      if /\w+[<>=]=?/.match?(params[:query])
+        hash[:error] << "You must include a colon after the key, e.g. attack:<5"
+      end
     end
 
     render json: hash
@@ -74,7 +78,7 @@ class Api::V1::CardsController < ApplicationController
     #   ["draven"]
     # ]
     attributes_from_query = params[:query].scan(
-      /((\w+:".*?"|\w+:\w+)?(\w+:".*?"|\w+:\w+)|\w+)/
+      /((\w+:".*?"|\w+[:<>]=?\w+)?(\w+:".*?"|\w+:\w+|\w+:[<>=]=?\d+)|\w+\b)/
     )
 
     attributes_from_query = attributes_from_query.reduce([]) do |acc, attr|
@@ -107,14 +111,48 @@ class Api::V1::CardsController < ApplicationController
         next
       end
 
-      if attr[0].include?(":")
+      if attr[0].include?(":") && !/:\d/.match?(attr[0]) && !/:[<>=]{1}=?\d+/.match?(attr[0])
         key, value = attr[0].split(":")
         key_symbol = key.delete('"').to_sym
-
-        if attributes[key_symbol]
+        if %w[attack health cost].include?(attr[0].split(":")[0])
+          value = [:==, 9999]
+          attributes[key_symbol] = value
+        elsif attributes[key_symbol]
           attributes[key_symbol] << value.delete('"').strip
         else
           attributes[key_symbol] = [value.delete('"').strip]
+        end
+      elsif /:[<>=]{1}=?\d+/.match?((attr[0])) || /:\d+/.match?((attr[0]))
+        if /\w+:<\d+\b/.match?((attr[0]))
+          key, value = attr[0].split(":<")
+          key_symbol = key.delete('"').to_sym
+          value = value.delete('"').to_i
+          attributes[key_symbol] = [:<, value]
+        elsif /\w+:>\d+\b/.match?((attr[0]))
+          key, value = attr[0].split(":>")
+          key_symbol = key.delete('"').to_sym
+          value = value.delete('"').to_i
+          attributes[key_symbol] = [:>, value]
+        elsif /\w+:=\d+\b/.match?((attr[0]))
+          key, value = attr[0].split(":=")
+          key_symbol = key.delete('"').to_sym
+          value = value.delete('"').to_i
+          attributes[key_symbol] = [:==, value]
+        elsif /\w+:\d+\b/.match?((attr[0]))
+          key, value = attr[0].split(":")
+          key_symbol = key.delete('"').to_sym
+          value = value.delete('"').to_i
+          attributes[key_symbol] = [:==, value]
+        elsif /\w+:<=\d+\b/.match?((attr[0]))
+          key, value = attr[0].split(":<=")
+          key_symbol = key.delete('"').to_sym
+          value = value.delete('"').to_i
+          attributes[key_symbol] = [:<=, value]
+        elsif /\w+:>=\d+\b/.match?((attr[0]))
+          key, value = attr[0].split(":>=")
+          key_symbol = key.delete('"').to_sym
+          value = value.delete('"').to_i
+          attributes[key_symbol] = [:>=, value]
         end
       elsif !attr[0].empty?
         attributes[:name] << attr[0].delete('"').strip
@@ -168,6 +206,8 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def valid_search_params?
+    return false if /\w+[<>=]=?/.match?(params[:query])
+
     format_search_params.all? do |param|
       key, = param.first
       permitted_search_criteria.include?(key)
@@ -176,6 +216,6 @@ class Api::V1::CardsController < ApplicationController
 
   def permitted_search_criteria
     %i[name description card_type rarity regions keywords formats artist_name
-       set flavor_text]
+       set flavor_text cost health attack]
   end
 end
