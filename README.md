@@ -664,6 +664,398 @@ Response: `status: 200`
     ]
 }
 ```
+
+Multiple Queries
+- Separating multiple full queries with "OR" will return all cards from each query combined
+    - Example: `GET /api/v1/cards/search?query=name:draven attack:>3 OR name:darius attack:>7`
+    
+```JSON
+{
+    "data": [
+        {
+            "id": "71",
+            "type": "card",
+            "attributes": {
+                "name": "Draven",
+                "card_code": "01NX020T3",
+                "description": "When I'm summoned or <link=vocab.Strike><style=Vocab>strike</style></link>: Create 2 <link=card.create><style=AssociatedCard>Spinning Axes</style></link> in hand.",
+                "description_raw": "When I'm summoned or strike: Create 2 Spinning Axes in hand.",
+                "levelup_description": "",
+                "levelup_description_raw": "",
+                "flavor_text": "\"WHAT'S MY NAME?\"",
+                "artist_name": "SIXMOREVODKA",
+                "attack": 4,
+                "cost": 3,
+                "health": 4,
+                "spell_speed": "",
+                "rarity": "None",
+                "supertype": "Champion",
+                "card_type": "Unit",
+                "collectible": false,
+                "set": "Set1",
+                "associated_card_refs": [
+                    "01NX020T2",
+                    "01NX020",
+                    "01NX020T1"
+                ],
+                "regions": [
+                    "Noxus"
+                ],
+                "region_refs": [
+                    "Noxus"
+                ],
+                "keywords": [
+                    "Quick Attack",
+                    "Overwhelm"
+                ],
+                "keyword_refs": [
+                    "QuickStrike",
+                    "Overwhelm"
+                ],
+                "formats": [
+                    "Eternal",
+                    "Standard"
+                ],
+                "format_refs": [
+                    "client_Formats_Eternal_name",
+                    "client_Formats_Standard_name"
+                ],
+                "assets": [
+                    {
+                        "game_absolute_path": "http://dd.b.pvp.net/5_6_0/set1/en_us/img/cards/01NX020T3.png",
+                        "full_absolute_path": "http://dd.b.pvp.net/5_6_0/set1/en_us/img/cards/01NX020T3-full.png"
+                    }
+                ],
+                "associated_cards": [
+                    {
+                        "id": 72,
+                        "name": "Draven's Whirling Death",
+                        "card_code": "01NX020T2",
+                        "description": "A battling ally <link=vocab.Strike><style=Vocab>strikes</style></link> a battling enemy.\r\nCreate a <link=card.level1><style=AssociatedCard>Draven</style></link> in your deck.",
+                        "description_raw": "A battling ally strikes a battling enemy.\r\nCreate a Draven in your deck.",
+                        "levelup_description": "",
+                        "levelup_description_raw": "",
+                        "flavor_text": "\"I have the best job.\" - Draven",
+                        "artist_name": "Rafael Zanchetin",
+                        "attack": 0,
+                        "cost": 3,
+                        "health": 0,
+                        "spell_speed": "Fast",
+                        "rarity": "None",
+                        "supertype": "Champion",
+                        "card_type": "Spell",
+                        "collectible": false,
+                        "set": "Set1",
+                        "associated_card_refs": [
+                            "01NX020T3",
+                            "01NX020"
+                        ],
+                        "regions": [
+                            "Noxus"
+                        ],
+                        "region_refs": [
+                            "Noxus"
+                        ],
+                        "keywords": [
+                            "Fast"
+                        ],
+                        "keyword_refs": [
+                            "Fast"
+                        ],
+                        "formats": [
+                            "Eternal",
+                            "Standard"
+                        ],
+                        "format_refs": [
+                            "client_Formats_Eternal_name",
+                            "client_Formats_Standard_name"
+                        ],
+                        "assets": [
+                            {
+                                "game_absolute_path": "http://dd.b.pvp.net/5_6_0/set1/en_us/img/cards/01NX020T2.png",
+                                "full_absolute_path": "http://dd.b.pvp.net/5_6_0/set1/en_us/img/cards/01NX020T2-full.png"
+                            }
+                        ],
+                        "created_at": "2024-07-30T16:17:29.438Z",
+                        "updated_at": "2024-07-30T16:17:29.438Z",
+                        "associated_cards": []
+                    },
+                    {
+                        "id": 70,
+                        "name": "Draven",
+                        "card_code": "01NX020",
+                        "description": "When I'm summoned or <link=vocab.Strike><style=Vocab>strike</style></link>: Create a <link=card.create><style=AssociatedCard>Spinning Axe</style></link> in hand.",
+                        "description_raw": "When I'm summoned or strike: Create a Spinning Axe in hand.",
+                        "levelup_description": "I've <link=vocab.Strike><style=Vocab>struck</style></link> with 2+ total <link=card.create><style=AssociatedCard>Spinning Axes</style></link>.<style=Variable></style>",
+                        "levelup_description_raw": "I've struck with 2+ total Spinning Axes.",
+                        "flavor_text": "\"You want an autograph? Get in line, pal.\"",
+                        "artist_name": "SIXMOREVODKA",
+                        "attack": 3,
+                        "cost": 3,
+                        "health": 3,
+                        "spell_speed": "",
+                        "rarity": "Champion",
+                        "supertype": "Champion",
+                        "card_type": "Unit",
+                        "collectible": true,
+                        "set": "Set1",
+                        "associated_card_refs": [
+                            "01NX020T1",
+                            "01NX020T3",
+                            "01NX020T2"
+                        ],
+                        "regions": [
+                            "Noxus"
+                        ],
+                        "region_refs": [
+                            "Noxus"
+                        ],
+                        "keywords": [
+                            "Quick Attack"
+                        ],
+                        "keyword_refs": [
+                            "QuickStrike"
+                        ],
+                        "formats": [
+                            "Commons Only",
+                            "Eternal"
+                        ],
+                        "format_refs": [
+                            "client_Formats_CommonsOnly_name",
+                            "client_Formats_Eternal_name"
+                        ],
+                        "assets": [
+                            {
+                                "game_absolute_path": "http://dd.b.pvp.net/5_6_0/set1/en_us/img/cards/01NX020.png",
+                                "full_absolute_path": "http://dd.b.pvp.net/5_6_0/set1/en_us/img/cards/01NX020-full.png"
+                            }
+                        ],
+                        "created_at": "2024-07-30T16:17:29.434Z",
+                        "updated_at": "2024-07-30T16:17:29.434Z",
+                        "associated_cards": []
+                    },
+                    {
+                        "id": 73,
+                        "name": "Spinning Axe",
+                        "card_code": "01NX020T1",
+                        "description": "To play, discard 1.\r\nGive an ally +1|+0 this round.",
+                        "description_raw": "To play, discard 1.\r\nGive an ally +1|+0 this round.",
+                        "levelup_description": "",
+                        "levelup_description_raw": "",
+                        "flavor_text": "\"Yeah, his brother'd win one-on-one, but you see those axes spiraling... it's art, it is. Art.\" - Arena regular",
+                        "artist_name": "SIXMOREVODKA",
+                        "attack": 0,
+                        "cost": 0,
+                        "health": 0,
+                        "spell_speed": "Burst",
+                        "rarity": "None",
+                        "supertype": "",
+                        "card_type": "Spell",
+                        "collectible": false,
+                        "set": "Set1",
+                        "associated_card_refs": [
+                            "01NX020"
+                        ],
+                        "regions": [
+                            "Noxus"
+                        ],
+                        "region_refs": [
+                            "Noxus"
+                        ],
+                        "keywords": [
+                            "Burst"
+                        ],
+                        "keyword_refs": [
+                            "Burst"
+                        ],
+                        "formats": [
+                            "Eternal",
+                            "Standard"
+                        ],
+                        "format_refs": [
+                            "client_Formats_Eternal_name",
+                            "client_Formats_Standard_name"
+                        ],
+                        "assets": [
+                            {
+                                "game_absolute_path": "http://dd.b.pvp.net/5_6_0/set1/en_us/img/cards/01NX020T1.png",
+                                "full_absolute_path": "http://dd.b.pvp.net/5_6_0/set1/en_us/img/cards/01NX020T1-full.png"
+                            }
+                        ],
+                        "created_at": "2024-07-30T16:17:29.440Z",
+                        "updated_at": "2024-07-30T16:17:29.440Z",
+                        "associated_cards": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "88",
+            "type": "card",
+            "attributes": {
+                "name": "Darius",
+                "card_code": "01NX038T2",
+                "description": "",
+                "description_raw": "",
+                "levelup_description": "",
+                "levelup_description_raw": "",
+                "flavor_text": "\"Stand in our way and I'll cut you down myself!\"",
+                "artist_name": "SIXMOREVODKA",
+                "attack": 10,
+                "cost": 6,
+                "health": 7,
+                "spell_speed": "",
+                "rarity": "None",
+                "supertype": "Champion",
+                "card_type": "Unit",
+                "collectible": false,
+                "set": "Set1",
+                "associated_card_refs": [
+                    "01NX038T1",
+                    "01NX038"
+                ],
+                "regions": [
+                    "Noxus"
+                ],
+                "region_refs": [
+                    "Noxus"
+                ],
+                "keywords": [
+                    "Overwhelm"
+                ],
+                "keyword_refs": [
+                    "Overwhelm"
+                ],
+                "formats": [
+                    "Eternal",
+                    "Standard"
+                ],
+                "format_refs": [
+                    "client_Formats_Eternal_name",
+                    "client_Formats_Standard_name"
+                ],
+                "assets": [
+                    {
+                        "game_absolute_path": "http://dd.b.pvp.net/5_6_0/set1/en_us/img/cards/01NX038T2.png",
+                        "full_absolute_path": "http://dd.b.pvp.net/5_6_0/set1/en_us/img/cards/01NX038T2-full.png"
+                    }
+                ],
+                "associated_cards": [
+                    {
+                        "id": 89,
+                        "name": "Darius' Decimate",
+                        "card_code": "01NX038T1",
+                        "description": "Deal 4 to the enemy Nexus.\r\nCreate a <link=card.level1><style=AssociatedCard>Darius</style></link> in your deck.",
+                        "description_raw": "Deal 4 to the enemy Nexus.\r\nCreate a Darius in your deck.",
+                        "levelup_description": "",
+                        "levelup_description_raw": "",
+                        "flavor_text": "\"Sometimes, it takes tactical genius to break a fortress. Sometimes, you just have to hit it harder.\" - Darius",
+                        "artist_name": "Max Grecke",
+                        "attack": 0,
+                        "cost": 6,
+                        "health": 0,
+                        "spell_speed": "Slow",
+                        "rarity": "None",
+                        "supertype": "Champion",
+                        "card_type": "Spell",
+                        "collectible": false,
+                        "set": "Set1",
+                        "associated_card_refs": [
+                            "01NX038T2",
+                            "01NX038"
+                        ],
+                        "regions": [
+                            "Noxus"
+                        ],
+                        "region_refs": [
+                            "Noxus"
+                        ],
+                        "keywords": [
+                            "Slow"
+                        ],
+                        "keyword_refs": [
+                            "Slow"
+                        ],
+                        "formats": [
+                            "Eternal",
+                            "Standard"
+                        ],
+                        "format_refs": [
+                            "client_Formats_Eternal_name",
+                            "client_Formats_Standard_name"
+                        ],
+                        "assets": [
+                            {
+                                "game_absolute_path": "http://dd.b.pvp.net/5_6_0/set1/en_us/img/cards/01NX038T1.png",
+                                "full_absolute_path": "http://dd.b.pvp.net/5_6_0/set1/en_us/img/cards/01NX038T1-full.png"
+                            }
+                        ],
+                        "created_at": "2024-07-30T16:17:29.483Z",
+                        "updated_at": "2024-07-30T16:17:29.483Z",
+                        "associated_cards": []
+                    },
+                    {
+                        "id": 81,
+                        "name": "Darius",
+                        "card_code": "01NX038",
+                        "description": "",
+                        "description_raw": "",
+                        "levelup_description": "I see the enemy Nexus has half of its starting Health or less.<br><style=Variable></style>",
+                        "levelup_description_raw": "I see the enemy Nexus has half of its starting Health or less.",
+                        "flavor_text": "\"An iron will and a titan's strength. There is no finer general to lead the Trifarian Legion.\" - Swain\n",
+                        "artist_name": "SIXMOREVODKA",
+                        "attack": 6,
+                        "cost": 6,
+                        "health": 6,
+                        "spell_speed": "",
+                        "rarity": "Champion",
+                        "supertype": "Champion",
+                        "card_type": "Unit",
+                        "collectible": true,
+                        "set": "Set1",
+                        "associated_card_refs": [
+                            "01NX038T2",
+                            "01NX038T1"
+                        ],
+                        "regions": [
+                            "Noxus"
+                        ],
+                        "region_refs": [
+                            "Noxus"
+                        ],
+                        "keywords": [
+                            "Overwhelm"
+                        ],
+                        "keyword_refs": [
+                            "Overwhelm"
+                        ],
+                        "formats": [
+                            "Commons Only",
+                            "Eternal"
+                        ],
+                        "format_refs": [
+                            "client_Formats_CommonsOnly_name",
+                            "client_Formats_Eternal_name"
+                        ],
+                        "assets": [
+                            {
+                                "game_absolute_path": "http://dd.b.pvp.net/5_6_0/set1/en_us/img/cards/01NX038.png",
+                                "full_absolute_path": "http://dd.b.pvp.net/5_6_0/set1/en_us/img/cards/01NX038-full.png"
+                            }
+                        ],
+                        "created_at": "2024-07-30T16:17:29.464Z",
+                        "updated_at": "2024-07-30T16:17:29.464Z",
+                        "associated_cards": []
+                    }
+                ]
+            }
+        }
+    ],
+    "error": []
+}
+```
+
+
 </details>
 
 <details>
