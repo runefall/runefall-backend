@@ -656,6 +656,23 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(response.status).to eq(400)
       expect(response.body).to include("invalid is an invalid search query")
     end
+
+    it 'will split a query if there is an OR in the query and parse cards for each set of filters, combining the results' do
+      impossible_card = create(:card, name: "Impossible Card")
+      possible_card = create(:card, name: "Possible Card")
+
+      get "/api/v1/cards/search?query=" + CGI.escape('name:"impossible card" OR name:"possible card"')
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(2)
+      expect(response.body).to include(impossible_card.card_code)
+      expect(response.body).to include(possible_card.card_code)
+    end
   end
 
   describe 'GET /api/v1/cards/random' do

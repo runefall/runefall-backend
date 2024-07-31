@@ -38,6 +38,8 @@ class Api::V1::CardsController < ApplicationController
   private
 
   def format_search_params
+    separated_queries = params[:query].split(/ or | OR | oR | Or /)
+
     # This regular expression splits the query string
     # into an array of arrays. Each sub-array contains
     # the key-value pair or a single word.
@@ -46,23 +48,25 @@ class Api::V1::CardsController < ApplicationController
     #   ['description:"a description here"'],
     #   ["draven"]
     # ]
-    attributes_from_query = params[:query].scan(
-      /((\w+:".*?"|\w+:\w+)?(\w+:".*?"|\w+:\w+)|\w+)/
-    )
-
-    attributes_from_query = attributes_from_query.reduce([]) do |acc, attr|
-      acc << attr unless attr[0].nil?
+    attributes_from_queries = separated_queries.map do |query|
+      query.scan(
+        /((\w+:".*?"|\w+:\w+)?(\w+:".*?"|\w+:\w+)|\w+)/
+      )
     end
 
-    attributes_from_query.map!(&:uniq!)
+    attributes_from_queries = attributes_from_queries.map do |query|
+      query.reduce([]) do |acc, attr|
+        acc << attr unless attr[0].nil?
+      end
+    end
 
+    attributes_from_queries.map! do |query|
+      query.map!(&:uniq!)
+    end
     # This hash will store the search parameters
     # Name is initially an empty string because we will
     # use string concatenation to build the name attribute
-    attributes = {
-      name: []
-    }
-
+    queries = []
     # This loop iterates over the array of arrays
     # and assigns the key-value pairs to the attributes hash.
     # If the key is empty, it appends the value to the name attribute.
@@ -72,35 +76,46 @@ class Api::V1::CardsController < ApplicationController
     #   region: "Ionia",
     #   description: "a description here"
     #  }
-    attributes_from_query.each do |attr|
-      if attr[0].include?(":")
-        key, value = attr[0].split(":")
-        key_symbol = key.delete('"').to_sym
+    attributes_from_queries.each_with_index do |query, index|
+      attributes = {
+        name: []
+      }
+      query.each do |attr|
+        if attr[0].include?(":")
 
-        if attributes[key_symbol]
-          attributes[key_symbol] << value.delete('"').strip
-        else
-          attributes[key_symbol] = [value.delete('"').strip]
+          key, value = attr[0].split(":")
+          key_symbol = key.delete('"').to_sym
+
+          if attributes[key_symbol]
+            attributes[key_symbol] << value.delete('"').strip
+          else
+            attributes[key_symbol] = [value.delete('"').strip]
+          end
+        elsif !attr[0].empty?
+          attributes[:name] << attr[0].delete('"').strip
         end
-      elsif !attr[0].empty?
-        attributes[:name] << attr[0].delete('"').strip
       end
+
+      queries[index] = attributes
     end
 
     # This removes the :name key if it is an empty string
     # Otherwise, it deletes any trailing whitespace
-    attributes.delete(:name) if attributes[:name] == []
+    queries.each do |attributes|
+      attributes.delete(:name) if attributes[:name] == []
+      reassign_keys(attributes)
+    end
 
-    reassign_keys(attributes)
-
-    attributes
+    queries
   end
 
   def find_invalid_search_keys
     invalid_keys = []
-    format_search_params.each do |param|
-      key, = param.first
-      invalid_keys << key unless permitted_search_criteria.include?(key)
+    format_search_params.each do |query|
+      query.each do |param|
+        key, = param.first
+        invalid_keys << key unless permitted_search_criteria.include?(key)
+      end
     end
     invalid_text = invalid_keys.join(", ")
     if invalid_keys.length > 1
@@ -133,9 +148,11 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def valid_search_params?
-    format_search_params.all? do |param|
-      key, = param.first
-      permitted_search_criteria.include?(key)
+    format_search_params.all? do |query|
+      query.all? do |param|
+        key, = param.first
+        permitted_search_criteria.include?(key)
+      end
     end
   end
 

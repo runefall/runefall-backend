@@ -1,26 +1,29 @@
 class Card < ApplicationRecord
-  def self.search(filters)
+  def self.search(queries)
     cards = Card.all
+    temp_cards = []
 
-    # This searches for cards by name iteratively
-    # for each name in the query string
-    # filters[:name]&.each do |name|
-    #   cards = cards.where(
-    #     "name ILIKE ?",
-    #     "%#{name}%"
-    #   )
-    # end
+    # This populates temp_cards with enough elements
+    # To match how many ORs were used in the query
+    # So that each can be individually filtered
+    (0..(queries.length - 1)).to_a.each do |index|
+      temp_cards[index] = cards
+    end
+
+
     # This uses the ILIKE operator to search by
     # name, description, etc. in a case-insensitive manner
     %i[name description_raw rarity artist_name set
        flavor_text card_type].each do |filter|
-      next unless filters[filter]
+      queries.each_with_index do |filters, index|
+        next unless filters[filter]
 
-      filters[filter]&.each do |value|
-        cards = cards.where(
-          "#{filter} ILIKE ?",
-          "%#{value}%"
-        )
+        filters[filter]&.each do |value|
+          temp_cards[index] = temp_cards[index].where(
+            "#{filter} ILIKE ?",
+            "%#{value}%"
+          )
+        end
       end
     end
 
@@ -29,41 +32,45 @@ class Card < ApplicationRecord
     # contained within the query string, e.g. "Demacia, Ionia" searches
     # for cards that are in either Demacia or Ionia, or both.
     %i[regions formats keywords].each do |filter|
-      next unless filters[filter]
+      queries.each_with_index do |filters, index|
+        next unless filters[filter]
 
-      # changes "demacia, ionia" to ["Demacia", "Ionia"]
-      # or "quick attack" to ["Quick Attack"]
-      array_text = ""
+        # changes "demacia, ionia" to ["Demacia", "Ionia"]
+        # or "quick attack" to ["Quick Attack"]
+        array_text = ""
 
-      filters[filter] = filters[filter].map do |value|
-        value.split(", ").map do |word|
-          word.split(" ").map(&:capitalize).join(" ")
+        filters[filter] = filters[filter].map do |value|
+          value.split(", ").map do |word|
+            word.split(" ").map(&:capitalize).join(" ")
+          end
         end
+
+        filters[filter].flatten!
+
+        filters[filter].each_with_index do |value, i|
+          capitalized_value = value.strip.split(" ").map(&:capitalize).join(" ")
+
+          # It then changes ["Demacia", "Ionia"] to '"Demacia", "Ionia"'
+          # where each value is surrounded by double quotes and separated by commas
+          array_text += if i.zero?
+                          "\"#{capitalized_value}\""
+                        else
+                          ", \"#{capitalized_value}\""
+                        end
+        end
+
+        # The array_text string is then used in the SQL query like this:
+        # WHERE regions && '{"Demacia", "Ionia"}'
+        temp_cards[index] = temp_cards[index].where(
+          "#{filter} && ?",
+          "{#{array_text}}"
+        )
       end
-
-      filters[filter].flatten!
-
-      filters[filter].each_with_index do |value, i|
-        capitalized_value = value.strip.split(" ").map(&:capitalize).join(" ")
-
-        # It then changes ["Demacia", "Ionia"] to '"Demacia", "Ionia"'
-        # where each value is surrounded by double quotes and separated by commas
-        array_text += if i.zero?
-                        "\"#{capitalized_value}\""
-                      else
-                        ", \"#{capitalized_value}\""
-                      end
-      end
-
-      # The array_text string is then used in the SQL query like this:
-      # WHERE regions && '{"Demacia", "Ionia"}'
-      cards = cards.where(
-        "#{filter} && ?",
-        "{#{array_text}}"
-      )
     end
 
-    cards
+    # combined_sql = temp_cards.map(&:to_sql).join(' UNION ')
+    # final_cards = Card.find_by_sql(combined_sql)
+    temp_cards.reduce { |combined, results| combined.or(results) }
   end
 
   def self.random_cards(limit)
