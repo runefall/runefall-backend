@@ -164,9 +164,9 @@ RSpec.describe Api::V1::CardsController, type: :request do
         set: "Set Name",
         flavor_text: "Flavor Text",
         card_type: "Unit",
-        attack: 1,
-        cost: 2,
-        health: 3
+        attack: 6,
+        cost: 6,
+        health: 6
       )
 
       # Search by description
@@ -634,27 +634,263 @@ RSpec.describe Api::V1::CardsController, type: :request do
     it "returns an unsupported query error if an invalid filter is used" do
       get "/api/v1/cards/search?query=" + CGI.escape("drav invalid:axe")
 
-      expect(response).to_not be_successful
-      expect(response.status).to eq(400)
-      expect(response.body).to include("invalid is an invalid search query")
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      body = JSON.parse(response.body, symbolize_names: true)
+      expect(body[:error]).to eq(["invalid is an invalid search parameter"])
     end
 
     it "returns an unsupported query error if multiple invalid filters are used" do
       get "/api/v1/cards/search?query=" + CGI.escape("drav invalid:axe invalid2:axe")
 
-      expect(response).to_not be_successful
-      expect(response.status).to eq(400)
-      expect(response.body).to include(
-        "[invalid, invalid2] are invalid search queries"
-      )
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      body = JSON.parse(response.body, symbolize_names: true)
+      expect(body[:error]).to eq([
+        "invalid is an invalid search parameter",
+        "invalid2 is an invalid search parameter"
+      ])
     end
 
     it "returns an unsupported query error if an invalid filter is used with a valid filter" do
       get "/api/v1/cards/search?query=" + CGI.escape("drav invalid:axe description:axe")
 
-      expect(response).to_not be_successful
-      expect(response.status).to eq(400)
-      expect(response.body).to include("invalid is an invalid search query")
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      body = JSON.parse(response.body, symbolize_names: true)
+      expect(body[:error]).to eq(["invalid is an invalid search parameter"])
+    end
+
+    it "ignores 'mode', 'attribute', and 'direction' parameters" do
+      get "/api/v1/cards/search?query=" + CGI.escape("#{@card.name} mode:image attribute:something direction:desc")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      body = JSON.parse(response.body, symbolize_names: true)
+      expect(body[:error]).to eq([])
+      expect(body[:data].count > 0).to eq(true)
+    end
+
+    it "can search by attack, cost, and health" do
+      create(:card, attack: 100, cost: 100, health: 100)
+
+      # Search for cards by cost
+
+      get "/api/v1/cards/search?query=" + CGI.escape("cost:=100")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("cost:>99")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("cost:<101")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(5)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("cost:<=100")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(5)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("cost:>=100")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("cost:=101")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(0)
+
+      # Search for cards by attack
+
+      get "/api/v1/cards/search?query=" + CGI.escape("attack:=100")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("attack:>99")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("attack:<101")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(5)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("attack:<=100")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(5)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("attack:>=100")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("attack:=101")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(0)
+
+      # Search for cards by health
+
+      get "/api/v1/cards/search?query=" + CGI.escape("health:=100")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      get "/api/v1/cards/search?query=" + CGI.escape("health:100")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("health:>99")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("health:<101")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(5)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("health:<=100")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(5)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("health:>=100")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+
+      get "/api/v1/cards/search?query=" + CGI.escape("health:=101")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(0)
+    end
+
+    it "does not break when given unexpected characters" do
+      get "/api/v1/cards/search?query=" + CGI.escape("attack:a")
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards[:data]).to be_an(Array)
+      expect(parsed_cards[:data].count).to eq(0)
+
+      get "/api/v1/cards/search?query=" + CGI.escape('cost:="a"')
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)
+
+      expect(parsed_cards[:data]).to be_an(Array)
+      expect(parsed_cards[:data].count).to eq(0)
     end
 
     it 'will split a query if there is an OR in the query and parse cards for each set of filters, combining the results' do
@@ -675,8 +911,8 @@ RSpec.describe Api::V1::CardsController, type: :request do
     end
   end
 
-  describe 'GET /api/v1/cards/random' do
-    it 'returns a random card' do
+  describe "GET /api/v1/cards/random" do
+    it "returns a random card" do
       get "/api/v1/cards/random"
 
       parsed_card = JSON.parse(response.body, symbolize_names: true)[:data]
@@ -684,7 +920,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(response).to be_successful
       expect(response.status).to eq(200)
 
-      expect(parsed_card[:type]).to eq('card')
+      expect(parsed_card[:type]).to eq("card")
 
       card_attributes = parsed_card[:attributes]
 
@@ -693,7 +929,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(card_attributes).to have_key(:description)
     end
 
-    it 'accepts a query parameter of limit that lets you return multiple random cards up to the limit' do
+    it "accepts a query parameter of limit that lets you return multiple random cards up to the limit" do
       get "/api/v1/cards/random?limit=2"
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
@@ -704,47 +940,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       expect(parsed_cards.count).to eq(2)
 
       parsed_cards.each do |card|
-        expect(card[:type]).to eq('card')
-
-        card_attributes = card[:attributes]
-
-        expect(card_attributes).to have_key(:name)
-        expect(card_attributes).to have_key(:card_code)
-        expect(card_attributes).to have_key(:description)
-      end
-    end
-  end
-
-  describe 'GET /api/v1/cards/random' do
-    it 'returns a random card' do
-      get "/api/v1/cards/random"
-
-      parsed_card = JSON.parse(response.body, symbolize_names: true)[:data]
-
-      expect(response).to be_successful
-      expect(response.status).to eq(200)
-
-      expect(parsed_card[:type]).to eq('card')
-
-      card_attributes = parsed_card[:attributes]
-
-      expect(card_attributes).to have_key(:name)
-      expect(card_attributes).to have_key(:card_code)
-      expect(card_attributes).to have_key(:description)
-    end
-
-    it 'accepts a query parameter of limit that lets you return multiple random cards up to the limit' do
-      get "/api/v1/cards/random?limit=2"
-
-      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
-
-      expect(response).to be_successful
-      expect(response.status).to eq(200)
-
-      expect(parsed_cards.count).to eq(2)
-
-      parsed_cards.each do |card|
-        expect(card[:type]).to eq('card')
+        expect(card[:type]).to eq("card")
 
         card_attributes = card[:attributes]
 
