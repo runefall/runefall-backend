@@ -92,13 +92,13 @@ RSpec.describe Api::V1::CardsController, type: :request do
       card2 = create(
         :card,
         name: "Draven's Whirling Death",
-        description: "whirling axe"
+        description_raw: "whirling axe"
       )
-      card3 = create(:card, name: "Potato", description: "whirling axe")
+      card3 = create(:card, name: "Potato", description_raw: "whirling axe")
       create_list(:card, 3, name: "Draven")
-      create_list(:card, 3, name: "Draven", description: "axe")
+      create_list(:card, 3, name: "Draven", description_raw: "axe")
 
-      get "/api/v1/cards/search?query=" + CGI.escape("drav description:axe")
+      get "/api/v1/cards/search?query=" + CGI.escape("drav description_raw:axe")
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -118,7 +118,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       card2 = create(
         :card,
         name: "Draven's Whirling Death",
-        description: "whirling axe"
+        description_raw: "whirling axe"
       )
 
       get "/api/v1/cards/search?query=" + CGI.escape("drav whir")
@@ -138,7 +138,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       card1 = create(
         :card,
         name: "Billy",
-        description: "A description",
+        description_raw: "A description",
         regions: %w[Here There],
         formats: ["Format", "Other Format"],
         keywords: ["Keyword", "Other Keyword"],
@@ -155,7 +155,7 @@ RSpec.describe Api::V1::CardsController, type: :request do
       create(
         :card,
         name: "Draven's Whirling Death",
-        description: "whirling axe",
+        description_raw: "whirling axe",
         regions: %w[Demacia Ionia],
         formats: ["Expedition"],
         keywords: ["Quick Attack"],
@@ -807,6 +807,9 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+
       get "/api/v1/cards/search?query=" + CGI.escape("health:100")
 
       expect(response).to be_successful
@@ -891,6 +894,93 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       expect(parsed_cards[:data]).to be_an(Array)
       expect(parsed_cards[:data].count).to eq(0)
+    end
+
+    it "will split a query if there is an OR in the query and parse cards for each set of filters, combining the results" do
+      impossible_card = create(:card, name: "Impossible Card")
+      possible_card = create(:card, name: "Possible Card")
+
+      get "/api/v1/cards/search?query=" + CGI.escape('name:"impossible card" OR name:"possible card"')
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(2)
+      expect(response.body).to include(impossible_card.card_code)
+      expect(response.body).to include(possible_card.card_code)
+    end
+
+    it "will split a query if there is an OR with multiple parameters" do
+      impossible_card = create(:card, name: "Impossible Card")
+      possible_card = create(:card, name: "Possible Card")
+
+      get "/api/v1/cards/search?query=" + CGI.escape(
+        "name:\"impossible card\" description:\"#{impossible_card.description_raw}\" OR name:\"possible card\""
+      )
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(2)
+      expect(response.body).to include(impossible_card.card_code)
+      expect(response.body).to include(possible_card.card_code)
+    end
+
+    it "OR will work with more than 2 queries" do
+      impossible_card = create(:card, name: "Impossible Card")
+      possible_card = create(:card, name: "Possible Card")
+
+      get "/api/v1/cards/search?query=" + CGI.escape(
+        "name:\"nonexistant card\" OR description:\"#{impossible_card.description_raw}\" OR name:\"possible card\""
+      )
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(2)
+      expect(response.body).to include(impossible_card.card_code)
+      expect(response.body).to include(possible_card.card_code)
+    end
+
+    it "OR will work with different combinations of queries" do
+      cards = create_list(:card, 5)
+
+      query = "health:=#{cards[0].health} cost:=#{cards[0].cost} attack:=#{cards[0].attack} OR " \
+              "description:\"#{cards[1].description_raw}\" OR " \
+              "name:\"#{cards[2].name}\""
+
+      get "/api/v1/cards/search?query=" + CGI.escape(query)
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(3)
+      expect(response.body).to include(cards[0].card_code)
+      expect(response.body).to include(cards[1].card_code)
+    end
+
+    it "will return zero results if only an 'or' is passed in as the query" do
+      get "/api/v1/cards/search?query=" + CGI.escape(" or ")
+
+      parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(0)
     end
   end
 

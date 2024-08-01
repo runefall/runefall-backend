@@ -24,14 +24,16 @@ class Api::V1::CardsController < ApplicationController
       hash[:error] = []
     else
       invalid = find_invalid_search_keys
-      valid_params = format_search_params
+      queries = format_search_params
 
       invalid.each do |key|
-        valid_params.delete(key)
+        queries.each do |params|
+          params.delete(key)
+        end
       end
 
-      if valid_params != {}
-        cards = Card.search(valid_params)
+      if queries.all? { |params| params != {} } && queries != []
+        cards = Card.search(queries)
 
         hash = JSON.parse(
           CardSerializer.new(cards).to_json,
@@ -50,13 +52,19 @@ class Api::V1::CardsController < ApplicationController
       if /\w+[<>=]=?/.match?(params[:query])
         hash[:error] << "You must include a colon after the key, e.g. attack:<5"
       end
+
+      if queries.empty?
+        hash[:error] << "You must include a valid search parameter"
+      end
     end
+
+    hash[:error].uniq!
 
     render json: hash
   end
 
   def random
-    limit = if params[:limit].to_i > 0
+    limit = if params[:limit].to_i.positive?
               params[:limit].to_i
             else
               1
@@ -69,6 +77,10 @@ class Api::V1::CardsController < ApplicationController
   private
 
   def format_search_params
+    # Including "i" after a regular expression makes it case-insensitive
+    # \s matches any whitespace character
+    separated_queries = params[:query].split(/\sor\s/i)
+
     # This regular expression splits the query string
     # into an array of arrays. Each sub-array contains
     # the key-value pair or a single word.
@@ -77,23 +89,17 @@ class Api::V1::CardsController < ApplicationController
     #   ['description:"a description here"'],
     #   ["draven"]
     # ]
-    attributes_from_query = params[:query].scan(
-      /((\w+:".*?"|\w+[:<>]=?\w+)?(\w+:".*?"|\w+:\w+|\w+:[<>=]=?\d+)|\w+\b)/
-    )
-
-    attributes_from_query = attributes_from_query.reduce([]) do |acc, attr|
-      acc << attr unless attr[0].nil?
+    attributes_from_queries = separated_queries.map do |query|
+      q = query.scan(
+        /((\w+:".*?"|\w+[:<>]=?\w+)?(\w+:".*?"|\w+:\w+|\w+:[<>=]=?\d+)|\w+\b)/
+      )
+      q.map do |attr|
+        attr.uniq!
+        attr.reject(&:nil?)
+      end
     end
 
-    attributes_from_query.map!(&:uniq!)
-
-    # This hash will store the search parameters
-    # Name is initially an empty string because we will
-    # use string concatenation to build the name attribute
-    attributes = {
-      name: []
-    }
-
+    queries = []
     # This loop iterates over the array of arrays
     # and assigns the key-value pairs to the attributes hash.
     # If the key is empty, it appends the value to the name attribute.
@@ -103,90 +109,98 @@ class Api::V1::CardsController < ApplicationController
     #   region: "Ionia",
     #   description: "a description here"
     #  }
-    attributes_from_query.each do |attr|
-      if attr[0].include?("mode:") ||
-         attr[0].include?("attribute:") ||
-         attr[0].include?("direction:")
+    attributes_from_queries.each_with_index do |query, index|
+      attributes = {
+        name: []
+      }
 
-        next
-      end
+      query.each do |attr|
+        if attr[0].include?("mode:") ||
+           attr[0].include?("attribute:") ||
+           attr[0].include?("direction:")
 
-      if attr[0].include?(":") && !/:\d/.match?(attr[0]) && !/:[<>=]{1}=?\d+/.match?(attr[0])
-        key, value = attr[0].split(":")
-        key_symbol = key.delete('"').to_sym
-        if %w[attack health cost].include?(attr[0].split(":")[0])
-          value = [:==, 9999]
-          attributes[key_symbol] = value
-        elsif attributes[key_symbol]
-          attributes[key_symbol] << value.delete('"').strip
-        else
-          attributes[key_symbol] = [value.delete('"').strip]
+          next
         end
-      elsif /:[<>=]{1}=?\d+/.match?((attr[0])) || /:\d+/.match?((attr[0]))
-        if /\w+:<\d+\b/.match?((attr[0]))
-          key, value = attr[0].split(":<")
-          key_symbol = key.delete('"').to_sym
-          value = value.delete('"').to_i
-          attributes[key_symbol] = [:<, value]
-        elsif /\w+:>\d+\b/.match?((attr[0]))
-          key, value = attr[0].split(":>")
-          key_symbol = key.delete('"').to_sym
-          value = value.delete('"').to_i
-          attributes[key_symbol] = [:>, value]
-        elsif /\w+:=\d+\b/.match?((attr[0]))
-          key, value = attr[0].split(":=")
-          key_symbol = key.delete('"').to_sym
-          value = value.delete('"').to_i
-          attributes[key_symbol] = [:==, value]
-        elsif /\w+:\d+\b/.match?((attr[0]))
+
+        if attr[0].include?(":") && !/:\d/.match?(attr[0]) && !/:[<>=]{1}=?\d+/.match?(attr[0])
           key, value = attr[0].split(":")
           key_symbol = key.delete('"').to_sym
-          value = value.delete('"').to_i
-          attributes[key_symbol] = [:==, value]
-        elsif /\w+:<=\d+\b/.match?((attr[0]))
-          key, value = attr[0].split(":<=")
-          key_symbol = key.delete('"').to_sym
-          value = value.delete('"').to_i
-          attributes[key_symbol] = [:<=, value]
-        elsif /\w+:>=\d+\b/.match?((attr[0]))
-          key, value = attr[0].split(":>=")
-          key_symbol = key.delete('"').to_sym
-          value = value.delete('"').to_i
-          attributes[key_symbol] = [:>=, value]
+
+          if %w[attack health cost].include?(attr[0].split(":")[0])
+            value = [:==, 9999]
+            attributes[key_symbol] = value
+          elsif attributes[key_symbol]
+            attributes[key_symbol] << value.delete('"').strip
+          else
+            attributes[key_symbol] = [value.delete('"').strip]
+          end
+
+        elsif /:[<>=]{1}=?\d+/.match?((attr[0])) || /:\d+/.match?((attr[0]))
+          if /\w+:<\d+\b/.match?((attr[0]))
+            key, value = attr[0].split(":<")
+            key_symbol = key.delete('"').to_sym
+            value = value.delete('"').to_i
+            attributes[key_symbol] = [:<, value]
+          elsif /\w+:>\d+\b/.match?((attr[0]))
+            key, value = attr[0].split(":>")
+            key_symbol = key.delete('"').to_sym
+            value = value.delete('"').to_i
+            attributes[key_symbol] = [:>, value]
+          elsif /\w+:=\d+\b/.match?((attr[0]))
+            key, value = attr[0].split(":=")
+            key_symbol = key.delete('"').to_sym
+            value = value.delete('"').to_i
+            attributes[key_symbol] = [:==, value]
+          elsif /\w+:\d+\b/.match?((attr[0]))
+            key, value = attr[0].split(":")
+            key_symbol = key.delete('"').to_sym
+            value = value.delete('"').to_i
+            attributes[key_symbol] = [:==, value]
+          elsif /\w+:<=\d+\b/.match?((attr[0]))
+            key, value = attr[0].split(":<=")
+            key_symbol = key.delete('"').to_sym
+            value = value.delete('"').to_i
+            attributes[key_symbol] = [:<=, value]
+          elsif /\w+:>=\d+\b/.match?((attr[0]))
+            key, value = attr[0].split(":>=")
+            key_symbol = key.delete('"').to_sym
+            value = value.delete('"').to_i
+            attributes[key_symbol] = [:>=, value]
+          end
+        elsif !attr[0].empty?
+          attributes[:name] << attr[0].delete('"').strip
         end
-      elsif !attr[0].empty?
-        attributes[:name] << attr[0].delete('"').strip
       end
+
+      queries[index] = attributes
     end
 
     # This removes the :name key if it is an empty string
     # Otherwise, it deletes any trailing whitespace
-    attributes.delete(:name) if attributes[:name] == []
+    queries.each do |attributes|
+      attributes.delete(:name) if attributes[:name].empty?
+      reassign_keys(attributes)
+    end
 
-    reassign_keys(attributes)
-
-    attributes
+    queries
   end
 
   def find_invalid_search_keys
     invalid_keys = []
-    format_search_params.each do |param|
-      key, = param.first
-      invalid_keys << key unless permitted_search_criteria.include?(key)
+    format_search_params.each do |query|
+      query.each do |param|
+        key, = param.first
+        invalid_keys << key unless permitted_search_criteria.include?(key)
+      end
     end
 
     invalid_keys
-    # invalid_text = invalid_keys.join(", ")
-    # if invalid_keys.length > 1
-    #   "[#{invalid_text}] are invalid search queries"
-    # else
-    #   "#{invalid_text} is an invalid search query"
-    # end
   end
 
   def reassign_keys(attributes)
     [
-      %i[d description],
+      %i[d description_raw],
+      %i[description description_raw],
       %i[t card_type],
       %i[r rarity],
       %i[type card_type],
@@ -206,16 +220,18 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def valid_search_params?
-    return false if /\w+[<>=]=?/.match?(params[:query])
+    f = format_search_params
+    return false if f.empty?
 
-    format_search_params.all? do |param|
-      key, = param.first
-      permitted_search_criteria.include?(key)
+    f.all? do |params|
+      params.all? do |key, _value|
+        permitted_search_criteria.include?(key)
+      end
     end
   end
 
   def permitted_search_criteria
-    %i[name description card_type rarity regions keywords formats artist_name
-       set flavor_text cost health attack]
+    %i[name description_raw card_type rarity regions keywords formats artist_name
+       set flavor_text cost attack health]
   end
 end
