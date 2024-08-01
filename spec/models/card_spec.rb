@@ -177,8 +177,11 @@ RSpec.describe Card, type: :model do
       expect(cards).to_not include(@card1)
     end
 
-    it 'can accept two different sets of filters and combine the results' do
-      search_array = [{name: ["potato"]}, {name: ["draven's whirling death"]}]
+    it "can accept two different sets of filters and combine the results" do
+      search_array = [
+        { name: ["potato"] },
+        { name: ["draven's whirling death"] }
+      ]
       cards = Card.search(search_array)
 
       expect(cards).to be_an(ActiveRecord::Relation)
@@ -201,7 +204,7 @@ RSpec.describe Card, type: :model do
       expect(card).to be_a Card
     end
 
-    it 'can return multiple random cards' do
+    it "can return multiple random cards" do
       cards = Card.random_cards(5)
 
       expect(cards.count).to eq(5)

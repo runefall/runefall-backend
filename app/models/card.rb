@@ -11,46 +11,47 @@ class Card < ApplicationRecord
     end
 
     queries.each_with_index do |filters, index|
-    # This filters by cost, health, and attack, being either
-    # <, >, =, <=, or >= than the value in the query string
-    %i[cost health attack].each do |filter|
-      next unless filters[filter]
+      # This filters by cost, health, and attack, being either
+      # <, >, =, <=, or >= than the value in the query string
+      %i[cost health attack].each do |filter|
+        next unless filters[filter]
 
-      operator = filters[filter][0]
-      value = filters[filter][1]
+        operator = filters[filter][0]
+        value = filters[filter][1]
 
-      case operator
-      when :<
-        temp_cards[index] = temp_cards[index].where(
-          "#{filter} < ?",
-          value
-        )
-      when :>
-        temp_cards[index] = temp_cards[index].where(
-          "#{filter} > ?",
-          value
-        )
-      when :==
-        temp_cards[index] = temp_cards[index].where(
-          "#{filter} = ?",
-          value
-        )
-      when :<=
-        temp_cards[index] = temp_cards[index].where(
-          "#{filter} <= ?",
-          value
-        )
-      when :>=
-        temp_cards[index] = temp_cards[index].where(
-          "#{filter} >= ?",
-          value
-        )
+        case operator
+        when :<
+          temp_cards[index] = temp_cards[index].where(
+            "#{filter} < ?",
+            value
+          )
+        when :>
+          temp_cards[index] = temp_cards[index].where(
+            "#{filter} > ?",
+            value
+          )
+        when :==
+          temp_cards[index] = temp_cards[index].where(
+            "#{filter} = ?",
+            value
+          )
+        when :<=
+          temp_cards[index] = temp_cards[index].where(
+            "#{filter} <= ?",
+            value
+          )
+        when :>=
+          temp_cards[index] = temp_cards[index].where(
+            "#{filter} >= ?",
+            value
+          )
+        end
       end
-    end
 
       # This uses the ILIKE operator to search by
       # name, description, etc. in a case-insensitive manner
-      %i[name description_raw rarity artist_name set flavor_text card_type].each do |filter|
+      %i[name description_raw rarity artist_name set flavor_text
+         card_type].each do |filter|
         next unless filters[filter]
 
         filters[filter]&.each do |value|

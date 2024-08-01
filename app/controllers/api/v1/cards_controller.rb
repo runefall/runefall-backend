@@ -32,7 +32,7 @@ class Api::V1::CardsController < ApplicationController
         end
       end
 
-      if queries.all? { |params| params != {} }
+      if queries.all? { |params| params != {} } && queries != []
         cards = Card.search(queries)
 
         hash = JSON.parse(
@@ -52,14 +52,19 @@ class Api::V1::CardsController < ApplicationController
       if /\w+[<>=]=?/.match?(params[:query])
         hash[:error] << "You must include a colon after the key, e.g. attack:<5"
       end
+
+      if queries.empty?
+        hash[:error] << "You must include a valid search parameter"
+      end
     end
+
     hash[:error].uniq!
 
     render json: hash
   end
 
   def random
-    limit = if params[:limit].to_i > 0
+    limit = if params[:limit].to_i.positive?
               params[:limit].to_i
             else
               1
@@ -72,7 +77,9 @@ class Api::V1::CardsController < ApplicationController
   private
 
   def format_search_params
-    separated_queries = params[:query].split(/ or | OR | oR | Or /)
+    # Including "i" after a regular expression makes it case-insensitive
+    # \s matches any whitespace character
+    separated_queries = params[:query].split(/\sor\s/i)
 
     # This regular expression splits the query string
     # into an array of arrays. Each sub-array contains
@@ -83,9 +90,13 @@ class Api::V1::CardsController < ApplicationController
     #   ["draven"]
     # ]
     attributes_from_queries = separated_queries.map do |query|
-      query.scan(
+      q = query.scan(
         /((\w+:".*?"|\w+[:<>]=?\w+)?(\w+:".*?"|\w+:\w+|\w+:[<>=]=?\d+)|\w+\b)/
       )
+      q.map do |attr|
+        attr.uniq!
+        attr.reject(&:nil?)
+      end
     end
 
     queries = []
@@ -102,57 +113,60 @@ class Api::V1::CardsController < ApplicationController
       attributes = {
         name: []
       }
+
       query.each do |attr|
         if attr[0].include?("mode:") ||
-          attr[0].include?("attribute:") ||
-          attr[0].include?("direction:")
+           attr[0].include?("attribute:") ||
+           attr[0].include?("direction:")
 
-         next
-       end
+          next
+        end
 
-       if attr[0].include?(":") && !/:\d/.match?(attr[0]) && !/:[<>=]{1}=?\d+/.match?(attr[0])
-         key, value = attr[0].split(":")
-         key_symbol = key.delete('"').to_sym
-         if %w[attack health cost].include?(attr[0].split(":")[0])
-           value = [:==, 9999]
-           attributes[key_symbol] = value
-         elsif attributes[key_symbol]
-           attributes[key_symbol] << value.delete('"').strip
-         else
-           attributes[key_symbol] = [value.delete('"').strip]
-         end
-       elsif /:[<>=]{1}=?\d+/.match?((attr[0])) || /:\d+/.match?((attr[0]))
-         if /\w+:<\d+\b/.match?((attr[0]))
-           key, value = attr[0].split(":<")
-           key_symbol = key.delete('"').to_sym
-           value = value.delete('"').to_i
-           attributes[key_symbol] = [:<, value]
-         elsif /\w+:>\d+\b/.match?((attr[0]))
-           key, value = attr[0].split(":>")
-           key_symbol = key.delete('"').to_sym
-           value = value.delete('"').to_i
-           attributes[key_symbol] = [:>, value]
-         elsif /\w+:=\d+\b/.match?((attr[0]))
-           key, value = attr[0].split(":=")
-           key_symbol = key.delete('"').to_sym
-           value = value.delete('"').to_i
-           attributes[key_symbol] = [:==, value]
-         elsif /\w+:\d+\b/.match?((attr[0]))
-           key, value = attr[0].split(":")
-           key_symbol = key.delete('"').to_sym
-           value = value.delete('"').to_i
-           attributes[key_symbol] = [:==, value]
-         elsif /\w+:<=\d+\b/.match?((attr[0]))
-           key, value = attr[0].split(":<=")
-           key_symbol = key.delete('"').to_sym
-           value = value.delete('"').to_i
-           attributes[key_symbol] = [:<=, value]
-         elsif /\w+:>=\d+\b/.match?((attr[0]))
-           key, value = attr[0].split(":>=")
-           key_symbol = key.delete('"').to_sym
-           value = value.delete('"').to_i
-           attributes[key_symbol] = [:>=, value]
-         end
+        if attr[0].include?(":") && !/:\d/.match?(attr[0]) && !/:[<>=]{1}=?\d+/.match?(attr[0])
+          key, value = attr[0].split(":")
+          key_symbol = key.delete('"').to_sym
+
+          if %w[attack health cost].include?(attr[0].split(":")[0])
+            value = [:==, 9999]
+            attributes[key_symbol] = value
+          elsif attributes[key_symbol]
+            attributes[key_symbol] << value.delete('"').strip
+          else
+            attributes[key_symbol] = [value.delete('"').strip]
+          end
+
+        elsif /:[<>=]{1}=?\d+/.match?((attr[0])) || /:\d+/.match?((attr[0]))
+          if /\w+:<\d+\b/.match?((attr[0]))
+            key, value = attr[0].split(":<")
+            key_symbol = key.delete('"').to_sym
+            value = value.delete('"').to_i
+            attributes[key_symbol] = [:<, value]
+          elsif /\w+:>\d+\b/.match?((attr[0]))
+            key, value = attr[0].split(":>")
+            key_symbol = key.delete('"').to_sym
+            value = value.delete('"').to_i
+            attributes[key_symbol] = [:>, value]
+          elsif /\w+:=\d+\b/.match?((attr[0]))
+            key, value = attr[0].split(":=")
+            key_symbol = key.delete('"').to_sym
+            value = value.delete('"').to_i
+            attributes[key_symbol] = [:==, value]
+          elsif /\w+:\d+\b/.match?((attr[0]))
+            key, value = attr[0].split(":")
+            key_symbol = key.delete('"').to_sym
+            value = value.delete('"').to_i
+            attributes[key_symbol] = [:==, value]
+          elsif /\w+:<=\d+\b/.match?((attr[0]))
+            key, value = attr[0].split(":<=")
+            key_symbol = key.delete('"').to_sym
+            value = value.delete('"').to_i
+            attributes[key_symbol] = [:<=, value]
+          elsif /\w+:>=\d+\b/.match?((attr[0]))
+            key, value = attr[0].split(":>=")
+            key_symbol = key.delete('"').to_sym
+            value = value.delete('"').to_i
+            attributes[key_symbol] = [:>=, value]
+          end
         elsif !attr[0].empty?
           attributes[:name] << attr[0].delete('"').strip
         end
@@ -181,12 +195,6 @@ class Api::V1::CardsController < ApplicationController
     end
 
     invalid_keys
-    # invalid_text = invalid_keys.join(", ")
-    # if invalid_keys.length > 1
-    #   "[#{invalid_text}] are invalid search queries"
-    # else
-    #   "#{invalid_text} is an invalid search query"
-    # end
   end
 
   def reassign_keys(attributes)
@@ -212,8 +220,11 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def valid_search_params?
-    format_search_params.all? do |params|
-      params.all? do |key, value|
+    f = format_search_params
+    return false if f.empty?
+
+    f.all? do |params|
+      params.all? do |key, _value|
         permitted_search_criteria.include?(key)
       end
     end
