@@ -807,6 +807,9 @@ RSpec.describe Api::V1::CardsController, type: :request do
 
       parsed_cards = JSON.parse(response.body, symbolize_names: true)[:data]
 
+      expect(parsed_cards).to be_an(Array)
+      expect(parsed_cards.count).to eq(1)
+
       get "/api/v1/cards/search?query=" + CGI.escape("health:100")
 
       expect(response).to be_successful
