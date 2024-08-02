@@ -432,13 +432,22 @@ GET /api/v1/cards/search?query=drav%20description%3aaxe
 Query Requirements:
 
 - Different filters should be separated by spaces
+- Enclosing a query in quotes treats the entire string to be treated as a single search token
+- Multiple keyword queries can be separated by a comma to return results that contain any of multiple keywords.
 - All filters (except name) should be formatted in the "attribute:value" syntax where the attribute and value are separated by a colon
 
 Accepted Queries: 
 
 - Name as "value" or "name:value"
-- Description as "description:value"
-
+- Description as "description:value" or "d:value"
+- Attack, Health, or Cost as "attack:>integer" or "cost:<=integer"
+- Card Type as "type:value" or "t:value".  Acceptable values are: unit, spell, landmark, ability, equipment
+- Rarity as "rarity:value" or "r:value".  Acceptable values are: common, rare, epic, champion, none
+- Region as "region:value" or "reg:value".  Acceptable values are: Ionia, Noxus, Piltover and Zaun, Freljord, Bandle City, Bilgewater, Shadow Isles, Shurima, Targon, Runeterra
+- Keywords as "keyword:value" or "k:value"
+- Format as "format:value" or "f:value".  Acceptable values are: standard, eternal, commons.
+- Set as "set:value" or "s:value".  Acceptable values are: set1, set2, set3, set4, set5, set6, set6cde, set7, set7b, set8, set9
+- Artist as "artist:value" or "a:value"
 
 Response: `status: 200`
 
